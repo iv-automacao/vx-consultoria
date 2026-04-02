@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fábio Castello Branco</title>
   <meta name="description" content="Especialista em Funil de Vendas — implantação comercial, marketing e treinamento de times." />
+  <meta name="theme-color" content="#080808" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet" />
@@ -232,6 +233,43 @@
         animation: none;
         opacity: 1;
       }
+    }
+
+    /* ── Responsivo ────────────────────────────────── */
+    @media (max-width: 375px) {
+      .container {
+        padding: 40px 16px 36px;
+      }
+      .name {
+        font-size: 22px;
+      }
+      .card {
+        padding: 14px 14px;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .avatar {
+        width: 104px;
+        height: 104px;
+      }
+      .name {
+        font-size: 30px;
+      }
+    }
+
+    /* ── Touch feedback mobile ──────────────────────── */
+    @media (hover: none) {
+      .card:active {
+        border-color: var(--border-hover);
+        transform: scale(0.97);
+      }
+    }
+
+    /* ── Focus visible global ───────────────────────── */
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
     }
   </style>
 </head>
