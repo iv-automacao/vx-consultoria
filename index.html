@@ -34,9 +34,40 @@
       font-family: 'Inter', sans-serif;
       -webkit-font-smoothing: antialiased;
     }
+
+    /* ── Glow de fundo ─────────────────────────────── */
+    .glow-bg {
+      position: fixed;
+      top: -10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(ellipse at center, var(--glow) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Container principal ────────────────────────── */
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 56px 20px 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+    }
   </style>
 </head>
 <body>
-  <p style="color:white;padding:2rem;">ok</p>
+  <!-- Efeito de fundo -->
+  <div class="glow-bg" aria-hidden="true"></div>
+
+  <main class="container">
+    <!-- Conteúdo vem aqui nas próximas tasks -->
+  </main>
 </body>
 </html>
