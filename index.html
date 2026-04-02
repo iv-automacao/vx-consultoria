@@ -3,12 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fábio Castello Branco</title>
-  <meta name="description" content="Especialista em Funil de Vendas — implantação comercial, marketing e treinamento de times." />
+  <title>Fábio Castello Branco | Especialista em Funil de Vendas</title>
+  <meta name="description" content="Processo comercial que fecha. Funil, CRM e time de vendas que gera resultado." />
   <meta name="theme-color" content="#080808" />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:locale"      content="pt_BR" />
+  <meta property="og:title"       content="Fábio Castello Branco | Especialista em Funil de Vendas" />
+  <meta property="og:description" content="Processo comercial que fecha. Funil, CRM e time de vendas que gera resultado." />
+  <meta property="og:image"       content="IMG_3762.JPG.jpeg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary" />
+  <meta name="twitter:title"       content="Fábio Castello Branco | Especialista em Funil de Vendas" />
+  <meta name="twitter:description" content="Processo comercial que fecha. Funil, CRM e time de vendas que gera resultado." />
+
+  <!-- Favicon SVG inline -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23080808'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='14' font-weight='700' fill='%23F97316'>FC</text></svg>" />
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet" />
+
+  <!-- Anime.js -->
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
+
   <style>
     /* ── Design Tokens ─────────────────────────────── */
     :root {
@@ -17,45 +38,109 @@
       --border:         rgba(255, 255, 255, 0.08);
       --border-hover:   #F97316;
       --accent:         #F97316;
-      --glow:           rgba(249, 115, 22, 0.15);
+      --glow:           rgba(249, 115, 22, 0.18);
       --text-primary:   #FFFFFF;
       --text-secondary: rgba(255, 255, 255, 0.55);
       --icon-bg:        rgba(249, 115, 22, 0.12);
       --radius-card:    14px;
       --radius-icon:    10px;
-      --transition:     150ms ease-out;
+      --transition:     180ms ease-out;
     }
 
     /* ── Reset ─────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     html, body {
       min-height: 100dvh;
       background-color: var(--bg);
       color: var(--text-primary);
       font-family: 'Inter', sans-serif;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
-    /* ── Glow de fundo ─────────────────────────────── */
-    .glow-bg {
+    /* ── Grid pattern sutil ────────────────────────── */
+    body::before {
+      content: '';
       position: fixed;
-      top: -10%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(ellipse at center, var(--glow) 0%, transparent 70%);
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 48px 48px;
       pointer-events: none;
       z-index: 0;
+    }
+
+    /* ── Textura de ruído ──────────────────────────── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.4'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 128px 128px;
+      opacity: 0.04;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Glow de fundo — respira ───────────────────── */
+    .glow-bg {
+      position: fixed;
+      top: -15%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(ellipse at center, var(--glow) 0%, transparent 68%);
+      pointer-events: none;
+      z-index: 1;
+      animation: glowPulse 5s ease-in-out infinite;
+    }
+
+    @keyframes glowPulse {
+      0%, 100% { opacity: 0.7; transform: translateX(-50%) scale(1); }
+      50%       { opacity: 1;   transform: translateX(-50%) scale(1.08); }
+    }
+
+    /* ── Segundo glow inferior ─────────────────────── */
+    .glow-bg-bottom {
+      position: fixed;
+      bottom: -20%;
+      right: -10%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(ellipse at center, rgba(249,115,22,0.07) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* ── Cursor glow (desktop) ─────────────────────── */
+    .cursor-glow {
+      position: fixed;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(249,115,22,0.06) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 1;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.3s;
+      opacity: 0;
     }
 
     /* ── Container principal ────────────────────────── */
     .container {
       position: relative;
-      z-index: 1;
+      z-index: 2;
       max-width: 480px;
       margin: 0 auto;
-      padding: 56px 20px 48px;
+      padding: 56px 20px 64px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -69,13 +154,20 @@
       align-items: center;
       gap: 16px;
       text-align: center;
+      opacity: 0;
     }
 
-    /* Avatar com borda gradiente laranja */
+    /* Avatar com borda gradiente laranja + ring pulsante */
     .avatar-wrapper {
       padding: 2px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), rgba(249, 115, 22, 0.3));
+      background: linear-gradient(135deg, var(--accent), rgba(249,115,22,0.3));
+      animation: ringPulse 3.5s ease-in-out infinite;
+    }
+
+    @keyframes ringPulse {
+      0%, 100% { box-shadow: 0 0 0px 0px rgba(249,115,22,0); }
+      50%       { box-shadow: 0 0 18px 4px rgba(249,115,22,0.25); }
     }
 
     .avatar {
@@ -91,6 +183,7 @@
       display: flex;
       flex-direction: column;
       gap: 6px;
+      opacity: 0;
     }
 
     .name {
@@ -137,23 +230,41 @@
       text-decoration: none;
       color: inherit;
       cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      will-change: transform;
       transition:
         border-color var(--transition),
-        box-shadow var(--transition),
-        transform var(--transition);
+        box-shadow var(--transition);
       -webkit-tap-highlight-color: transparent;
+      opacity: 0;
+      transform-style: preserve-3d;
+    }
+
+    /* Glow interno que segue o cursor */
+    .card-glow {
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius-card);
+      background: radial-gradient(circle 120px at var(--mx, 50%) var(--my, 50%), rgba(249,115,22,0.07), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+
+    .card:hover .card-glow {
+      opacity: 1;
     }
 
     .card:hover,
     .card:focus-visible {
       border-color: var(--border-hover);
-      box-shadow: 0 0 0 1px rgba(249, 115, 22, 0.2), 0 8px 24px rgba(0,0,0,0.4);
-      transform: translateY(-1px);
+      box-shadow: 0 0 0 1px rgba(249,115,22,0.2), 0 12px 32px rgba(0,0,0,0.5);
       outline: none;
     }
 
     .card:active {
-      transform: scale(0.98) translateY(0);
+      transform: scale(0.97) !important;
     }
 
     /* ── Ícone ──────────────────────────────────────── */
@@ -167,6 +278,36 @@
       border-radius: var(--radius-icon);
       background: var(--icon-bg);
       color: var(--accent);
+      transition: background var(--transition);
+    }
+
+    .card:hover .card-icon {
+      background: rgba(249,115,22,0.18);
+    }
+
+    /* SVG draw-in no hover */
+    .card-icon svg {
+      overflow: visible;
+    }
+
+    .card-icon svg path,
+    .card-icon svg rect,
+    .card-icon svg line {
+      stroke-dasharray: 100;
+      stroke-dashoffset: 0;
+      transition: stroke-dashoffset 0.4s ease-out;
+    }
+
+    .card:hover .card-icon svg path,
+    .card:hover .card-icon svg rect,
+    .card:hover .card-icon svg line {
+      stroke-dashoffset: 0;
+      animation: iconDraw 0.4s ease-out forwards;
+    }
+
+    @keyframes iconDraw {
+      from { stroke-dashoffset: 100; }
+      to   { stroke-dashoffset: 0; }
     }
 
     /* ── Texto do card ──────────────────────────────── */
@@ -200,69 +341,45 @@
     .card:hover .card-arrow,
     .card:focus-visible .card-arrow {
       color: var(--accent);
-      transform: translateX(2px);
+      transform: translateX(3px);
     }
 
-    /* ── Animações de entrada ───────────────────────── */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(14px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .animate {
+    /* ── Footer ─────────────────────────────────────── */
+    .footer {
+      margin-top: 8px;
+      font-size: 11px;
+      color: rgba(255,255,255,0.2);
+      letter-spacing: 0.04em;
       opacity: 0;
-      animation: fadeInUp 0.5s ease-out forwards;
     }
 
-    .delay-0  { animation-delay: 0ms; }
-    .delay-1  { animation-delay: 100ms; }
-    .delay-2  { animation-delay: 200ms; }
-    .delay-3  { animation-delay: 300ms; }
-    .delay-4  { animation-delay: 400ms; }
-    .delay-5  { animation-delay: 500ms; }
-
-    /* Respeitar preferência do sistema */
-    @media (prefers-reduced-motion: reduce) {
-      .animate {
-        animation: none;
-        opacity: 1;
-      }
+    .footer a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s;
     }
 
-    /* ── Responsivo ────────────────────────────────── */
+    .footer a:hover {
+      color: rgba(255,255,255,0.45);
+    }
+
+    /* ── Responsivo ─────────────────────────────────── */
     @media (max-width: 375px) {
-      .container {
-        padding: 40px 16px 36px;
-      }
-      .name {
-        font-size: 22px;
-      }
-      .card {
-        padding: 14px 14px;
-      }
+      .container { padding: 40px 16px 48px; }
+      .name      { font-size: 22px; }
+      .card      { padding: 14px 14px; }
     }
 
     @media (min-width: 768px) {
-      .avatar {
-        width: 104px;
-        height: 104px;
-      }
-      .name {
-        font-size: 30px;
-      }
+      .avatar { width: 104px; height: 104px; }
+      .name   { font-size: 30px; }
     }
 
     /* ── Touch feedback mobile ──────────────────────── */
     @media (hover: none) {
       .card:active {
         border-color: var(--border-hover);
-        transform: scale(0.97);
+        transform: scale(0.97) !important;
       }
     }
 
@@ -271,15 +388,28 @@
       outline: 2px solid var(--accent);
       outline-offset: 3px;
     }
+
+    /* ── Reduced motion ─────────────────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      .avatar-wrapper,
+      .glow-bg {
+        animation: none !important;
+      }
+      .card {
+        transition: border-color 0ms, box-shadow 0ms !important;
+      }
+    }
   </style>
 </head>
 <body>
-  <!-- Efeito de fundo -->
+  <!-- Efeitos de fundo -->
   <div class="glow-bg" aria-hidden="true"></div>
+  <div class="glow-bg-bottom" aria-hidden="true"></div>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
 
   <main class="container">
     <section class="profile">
-      <div class="avatar-wrapper animate delay-0">
+      <div class="avatar-wrapper">
         <img
           class="avatar"
           src="IMG_3762.JPG.jpeg"
@@ -288,7 +418,7 @@
           height="92"
         />
       </div>
-      <div class="profile-info animate delay-1">
+      <div class="profile-info">
         <h1 class="name">Fábio Castello Branco</h1>
         <p class="title">Especialista em Funil de Vendas</p>
         <p class="bio">Processo comercial que fecha. Funil, CRM e time de vendas que gera resultado.</p>
@@ -298,14 +428,14 @@
     <section class="links" aria-label="Opções de contato">
 
       <a
-        class="card animate delay-3"
+        class="card"
         href="https://wa.me/19047491633?text=Oi%20F%C3%A1bio%2C%20vim%20pelo%20link%20da%20bio%20e%20quero%20implantar%20o%20comercial%20da%20minha%20empresa"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Quero fazer a implantação comercial da minha empresa — abre WhatsApp"
       >
+        <div class="card-glow"></div>
         <div class="card-icon" aria-hidden="true">
-          <!-- Lucide: briefcase -->
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
             <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
             <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
@@ -323,14 +453,14 @@
       </a>
 
       <a
-        class="card animate delay-4"
+        class="card"
         href="https://wa.me/19047491633?text=Oi%20F%C3%A1bio%2C%20vim%20pelo%20link%20da%20bio%20e%20quero%20estruturar%20meu%20marketing"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Quero estruturar o meu marketing — abre WhatsApp"
       >
+        <div class="card-glow"></div>
         <div class="card-icon" aria-hidden="true">
-          <!-- Lucide: bar-chart-2 -->
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
             <line x1="18" y1="20" x2="18" y2="10"/>
             <line x1="12" y1="20" x2="12" y2="4"/>
@@ -349,14 +479,14 @@
       </a>
 
       <a
-        class="card animate delay-5"
+        class="card"
         href="https://wa.me/19047491633?text=Oi%20F%C3%A1bio%2C%20vim%20pelo%20link%20da%20bio%20e%20quero%20aprender%20sobre%20marketing%20e%20vendas"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Quero aprender sobre marketing e vendas — abre WhatsApp"
       >
+        <div class="card-glow"></div>
         <div class="card-icon" aria-hidden="true">
-          <!-- Lucide: book-open -->
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
             <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
             <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
@@ -374,6 +504,106 @@
       </a>
 
     </section>
+
+    <footer class="footer">
+      <a href="https://www.instagram.com/fabiocastellob" target="_blank" rel="noopener noreferrer">@fabiocastellob</a>
+    </footer>
   </main>
+
+  <script>
+    /* ── Animação de entrada com Anime.js (spring physics) ── */
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!prefersReducedMotion) {
+      const tl = anime.timeline({ easing: 'spring(1, 80, 12, 0)' });
+
+      tl.add({
+        targets: '.profile',
+        opacity: [0, 1],
+        translateY: [20, 0],
+        duration: 800,
+      }).add({
+        targets: '.profile-info',
+        opacity: [0, 1],
+        translateY: [12, 0],
+        duration: 700,
+      }, '-=500').add({
+        targets: '.card',
+        opacity: [0, 1],
+        translateY: [18, 0],
+        delay: anime.stagger(90),
+        duration: 700,
+      }, '-=400').add({
+        targets: '.footer',
+        opacity: [0, 1],
+        duration: 500,
+      }, '-=200');
+    } else {
+      /* Sem animação — exibir tudo imediatamente */
+      document.querySelectorAll('.profile, .profile-info, .card, .footer').forEach(el => {
+        el.style.opacity = '1';
+      });
+    }
+
+    /* ── Card tilt magnético + glow interno (desktop) ── */
+    const isHoverDevice = window.matchMedia('(hover: hover)').matches;
+
+    if (isHoverDevice) {
+      document.querySelectorAll('.card').forEach(card => {
+        const glow = card.querySelector('.card-glow');
+        let raf = null;
+
+        card.addEventListener('mousemove', e => {
+          if (raf) cancelAnimationFrame(raf);
+          raf = requestAnimationFrame(() => {
+            const rect  = card.getBoundingClientRect();
+            const cx    = rect.width  / 2;
+            const cy    = rect.height / 2;
+            const mx    = e.clientX - rect.left;
+            const my    = e.clientY - rect.top;
+            const rotX  = ((my - cy) / cy) * -4;   /* max ±4deg */
+            const rotY  = ((mx - cx) / cx) *  5;   /* max ±5deg */
+
+            card.style.transform    = `perspective(600px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-2px)`;
+            card.style.willChange   = 'transform';
+
+            /* Glow segue o cursor */
+            if (glow) {
+              glow.style.setProperty('--mx', `${mx}px`);
+              glow.style.setProperty('--my', `${my}px`);
+            }
+          });
+        });
+
+        card.addEventListener('mouseleave', () => {
+          if (raf) cancelAnimationFrame(raf);
+          anime({
+            targets: card,
+            rotateX: 0,
+            rotateY: 0,
+            translateY: 0,
+            duration: 400,
+            easing: 'spring(1, 80, 12, 0)',
+          });
+        });
+      });
+
+      /* ── Cursor glow ── */
+      const cursorGlow = document.getElementById('cursorGlow');
+      let cx = 0, cy = 0;
+
+      document.addEventListener('mousemove', e => {
+        cx = e.clientX;
+        cy = e.clientY;
+        cursorGlow.style.left    = cx + 'px';
+        cursorGlow.style.top     = cy + 'px';
+        cursorGlow.style.opacity = '1';
+      });
+
+      document.addEventListener('mouseleave', () => {
+        cursorGlow.style.opacity = '0';
+      });
+    }
+  </script>
 </body>
 </html>
