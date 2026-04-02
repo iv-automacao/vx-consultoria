@@ -201,6 +201,38 @@
       color: var(--accent);
       transform: translateX(2px);
     }
+
+    /* ── Animações de entrada ───────────────────────── */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate {
+      opacity: 0;
+      animation: fadeInUp 0.5s ease-out forwards;
+    }
+
+    .delay-0  { animation-delay: 0ms; }
+    .delay-1  { animation-delay: 100ms; }
+    .delay-2  { animation-delay: 200ms; }
+    .delay-3  { animation-delay: 300ms; }
+    .delay-4  { animation-delay: 400ms; }
+    .delay-5  { animation-delay: 500ms; }
+
+    /* Respeitar preferência do sistema */
+    @media (prefers-reduced-motion: reduce) {
+      .animate {
+        animation: none;
+        opacity: 1;
+      }
+    }
   </style>
 </head>
 <body>
@@ -209,7 +241,7 @@
 
   <main class="container">
     <section class="profile">
-      <div class="avatar-wrapper">
+      <div class="avatar-wrapper animate delay-0">
         <img
           class="avatar"
           src="IMG_3762.JPG.jpeg"
@@ -218,7 +250,7 @@
           height="92"
         />
       </div>
-      <div class="profile-info">
+      <div class="profile-info animate delay-1">
         <h1 class="name">Fábio Castello Branco</h1>
         <p class="title">Especialista em Funil de Vendas</p>
         <p class="bio">Processo comercial que fecha. Funil, CRM e time de vendas que gera resultado.</p>
@@ -228,7 +260,7 @@
     <section class="links" aria-label="Opções de contato">
 
       <a
-        class="card"
+        class="card animate delay-3"
         href="https://wa.me/19047491633?text=Oi%20F%C3%A1bio%2C%20vim%20pelo%20link%20da%20bio%20e%20quero%20implantar%20o%20comercial%20da%20minha%20empresa"
         target="_blank"
         rel="noopener noreferrer"
@@ -253,7 +285,7 @@
       </a>
 
       <a
-        class="card"
+        class="card animate delay-4"
         href="https://wa.me/19047491633?text=Oi%20F%C3%A1bio%2C%20vim%20pelo%20link%20da%20bio%20e%20quero%20estruturar%20meu%20marketing"
         target="_blank"
         rel="noopener noreferrer"
@@ -279,7 +311,7 @@
       </a>
 
       <a
-        class="card"
+        class="card animate delay-5"
         href="https://wa.me/19047491633?text=Oi%20F%C3%A1bio%2C%20vim%20pelo%20link%20da%20bio%20e%20quero%20aprender%20sobre%20marketing%20e%20vendas"
         target="_blank"
         rel="noopener noreferrer"
