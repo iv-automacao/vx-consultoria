@@ -6,25 +6,65 @@
   <title>VX Consultoria | Fábio Castello — Consultoria Comercial</title>
   <meta name="description" content="Estruturo processos comerciais que geram vendas previsíveis. CRM, funil e time comercial organizados em até 90 dias." />
   <meta name="theme-color" content="#0a0f1a" />
+  <link rel="canonical" href="https://vxconsultoria.com/" />
 
   <!-- Open Graph -->
   <meta property="og:type"        content="website" />
   <meta property="og:locale"      content="pt_BR" />
+  <meta property="og:url"         content="https://vxconsultoria.com/" />
   <meta property="og:title"       content="VX Consultoria | Fábio Castello" />
   <meta property="og:description" content="Estruturo processos comerciais que geram vendas previsíveis. CRM, funil e time comercial organizados em até 90 dias." />
-  <meta property="og:image"       content="fabio1.png" />
+  <meta property="og:image"       content="https://vxconsultoria.com/fabio1.webp" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:title"       content="VX Consultoria | Fábio Castello" />
   <meta name="twitter:description" content="Estruturo processos comerciais que geram vendas previsíveis." />
+  <meta name="twitter:image"       content="https://vxconsultoria.com/fabio1.webp" />
 
   <!-- Favicon SVG inline -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230a0f1a'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='13' font-weight='700' fill='%23F97316'>VX</text></svg>" />
 
+  <!-- Preload hero image para LCP otimizado -->
+  <link rel="preload" as="image" href="fabio1.webp" type="image/webp">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Serif&display=swap" rel="stylesheet">
+
+  <!-- Schema Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://vxconsultoria.com/#website",
+        "url": "https://vxconsultoria.com/",
+        "name": "VX Consultoria",
+        "description": "Consultoria comercial especializada em estruturar processos de vendas previsíveis.",
+        "inLanguage": "pt-BR"
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://vxconsultoria.com/#organization",
+        "name": "VX Consultoria",
+        "url": "https://vxconsultoria.com/",
+        "description": "Estruturamos CRM, funil e time comercial para empresas que querem vendas previsíveis em até 90 dias.",
+        "founder": {
+          "@type": "Person",
+          "name": "Fábio Castello",
+          "sameAs": "https://www.instagram.com/fabiocastellob"
+        },
+        "areaServed": "BR",
+        "knowsAbout": ["CRM", "Processo Comercial", "Funil de Vendas", "Consultoria de Vendas"],
+        "sameAs": [
+          "https://www.instagram.com/fabiocastellob"
+        ]
+      }
+    ]
+  }
+  </script>
 
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -135,7 +175,7 @@
     .cta-btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 8px 36px rgba(249, 115, 22, 0.45);
-      background: #27ae60;
+      background: #ea6a0a;
     }
 
     .cta-btn.cta-sm {
@@ -985,9 +1025,42 @@
       section { padding: 56px 0; }
       .pain-grid { grid-template-columns: 1fr; }
     }
+
+    /* ── ACESSIBILIDADE ─────────────────────────── */
+
+    /* Skip navigation */
+    .skip-nav {
+      position: absolute;
+      top: -100%;
+      left: 16px;
+      background: var(--accent);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 0 0 8px 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      z-index: 1000;
+      transition: top 0.2s;
+    }
+
+    .skip-nav:focus {
+      top: 0;
+    }
+
+    /* Focus visível para navegação por teclado */
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
   </style>
 </head>
 <body>
+
+  <a href="#conteudo-principal" class="skip-nav">Pular para o conteúdo</a>
+
+  <main id="conteudo-principal">
 
   <!-- ══════════ HERO ══════════ -->
   <section class="hero">
@@ -1010,7 +1083,10 @@
 
         <!-- Foto -->
         <div class="hero-photo-wrap">
-          <img src="fabio1.png" alt="Fábio Castello — Consultor Comercial" class="hero-photo" width="480">
+          <picture>
+              <source srcset="fabio1.webp" type="image/webp">
+              <img src="fabio1.png" alt="Fábio Castello — Consultor Comercial" class="hero-photo" width="480" height="715" fetchpriority="high" loading="eager">
+            </picture>
           <div class="hero-badge">
             <div class="hero-badge-icon">✓</div>
             <div class="hero-badge-text">
@@ -1044,16 +1120,16 @@
       <div class="proof-grid">
         <!-- Substitua os src pelos nomes reais dos prints quando subir -->
         <div class="proof-card">
-          <img src="proof1.jpeg" alt="Resultado cliente 1" loading="lazy">
+          <img src="proof1.jpeg" alt="Print de resultado de cliente após consultoria VX — crescimento em vendas" loading="lazy" width="400" height="300">
         </div>
         <div class="proof-card">
-          <img src="proof2.jpeg" alt="Resultado cliente 2" loading="lazy">
+          <img src="proof2.jpeg" alt="Print de resultado de cliente após consultoria VX — processo comercial estruturado" loading="lazy" width="400" height="300">
         </div>
         <div class="proof-card">
-          <img src="proof3.jpeg" alt="Resultado cliente 3" loading="lazy">
+          <img src="proof3.jpeg" alt="Print de resultado de cliente após consultoria VX — CRM organizado" loading="lazy" width="400" height="300">
         </div>
         <div class="proof-card">
-          <img src="proof4.jpeg" alt="Resultado cliente 4" loading="lazy">
+          <img src="proof4.jpeg" alt="Print de resultado de cliente após consultoria VX — aumento de conversão" loading="lazy" width="400" height="300">
         </div>
       </div>
 
@@ -1074,27 +1150,27 @@
 
       <div class="pain-grid">
         <div class="pain-item">
-          <div class="pain-icon">✗</div>
+          <div class="pain-icon" aria-hidden="true">✗</div>
           <p>Leads chegando, mas poucos virando vendas</p>
         </div>
         <div class="pain-item">
-          <div class="pain-icon">✗</div>
+          <div class="pain-icon" aria-hidden="true">✗</div>
           <p>Equipe sem padrão de atendimento</p>
         </div>
         <div class="pain-item">
-          <div class="pain-icon">✗</div>
+          <div class="pain-icon" aria-hidden="true">✗</div>
           <p>Falta de follow-up — dinheiro ficando na mesa</p>
         </div>
         <div class="pain-item">
-          <div class="pain-icon">✗</div>
+          <div class="pain-icon" aria-hidden="true">✗</div>
           <p>CRM bagunçado ou nem utilizado</p>
         </div>
         <div class="pain-item">
-          <div class="pain-icon">✗</div>
+          <div class="pain-icon" aria-hidden="true">✗</div>
           <p>Dependente de "vendedores bons" ao invés de processo</p>
         </div>
         <div class="pain-item">
-          <div class="pain-icon">✗</div>
+          <div class="pain-icon" aria-hidden="true">✗</div>
           <p>Time não acompanha orçamentos em aberto — vendas perdidas sem perceber</p>
         </div>
       </div>
@@ -1130,7 +1206,7 @@
 
         <div class="entrega-card">
           <div class="entrega-img">
-            <img src="fabio1.png" alt="Estrutura e tecnologia" loading="lazy">
+            <picture><source srcset="fabio1.webp" type="image/webp"><img src="fabio1.png" alt="Fábio Castello — pilar de tecnologia: implementação de CRM e automações" loading="lazy" width="220" height="328"></picture>
             <div class="entrega-img-overlay"></div>
             <div class="entrega-img-num">01</div>
           </div>
@@ -1148,7 +1224,7 @@
 
         <div class="entrega-card">
           <div class="entrega-img">
-            <img src="fabio2.png" alt="Estratégia e posicionamento" loading="lazy">
+            <picture><source srcset="fabio2.webp" type="image/webp"><img src="fabio2.png" alt="Fábio Castello — pilar de estratégia: mapeamento de jornada e ICP" loading="lazy" width="220" height="328"></picture>
             <div class="entrega-img-overlay"></div>
             <div class="entrega-img-num">02</div>
           </div>
@@ -1165,7 +1241,7 @@
 
         <div class="entrega-card">
           <div class="entrega-img">
-            <img src="fabio1.png" alt="Processo comercial" loading="lazy">
+            <picture><source srcset="fabio1.webp" type="image/webp"><img src="fabio1.png" alt="Fábio Castello — pilar de processos: padronização e playbook comercial" loading="lazy" width="220" height="328"></picture>
             <div class="entrega-img-overlay"></div>
             <div class="entrega-img-num">03</div>
           </div>
@@ -1182,7 +1258,7 @@
 
         <div class="entrega-card">
           <div class="entrega-img">
-            <img src="fabio2.png" alt="Pessoas e equipe" loading="lazy">
+            <picture><source srcset="fabio2.webp" type="image/webp"><img src="fabio2.png" alt="Fábio Castello — pilar de equipe: estruturação e treinamento comercial" loading="lazy" width="220" height="328"></picture>
             <div class="entrega-img-overlay"></div>
             <div class="entrega-img-num">04</div>
           </div>
@@ -1200,7 +1276,7 @@
 
         <div class="entrega-card">
           <div class="entrega-img">
-            <img src="fabio1.png" alt="Comunicação e vendas" loading="lazy">
+            <picture><source srcset="fabio1.webp" type="image/webp"><img src="fabio1.png" alt="Fábio Castello — pilar de vendas: scripts de atendimento e quebra de objeções" loading="lazy" width="220" height="328"></picture>
             <div class="entrega-img-overlay"></div>
             <div class="entrega-img-num">05</div>
           </div>
@@ -1217,7 +1293,7 @@
 
         <div class="entrega-card">
           <div class="entrega-img">
-            <img src="fabio2.png" alt="Acompanhamento e evolução" loading="lazy">
+            <picture><source srcset="fabio2.webp" type="image/webp"><img src="fabio2.png" alt="Fábio Castello — pilar de acompanhamento: reuniões semanais e VX Academy" loading="lazy" width="220" height="328"></picture>
             <div class="entrega-img-overlay"></div>
             <div class="entrega-img-num">06</div>
           </div>
@@ -1340,6 +1416,8 @@
       <div class="urgencia">Condições especiais para novos clientes em Abril</div>
     </div>
   </section>
+
+  </main><!-- /#conteudo-principal -->
 
   <!-- ══════════ FOOTER ══════════ -->
   <footer>
