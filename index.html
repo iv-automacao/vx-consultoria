@@ -5,19 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>VX Consultoria | Fábio Castello — Consultoria Comercial</title>
   <meta name="description" content="Estruturo processos comerciais que geram vendas previsíveis. CRM, funil e time comercial organizados em até 90 dias." />
-  <meta name="theme-color" content="#080808" />
+  <meta name="theme-color" content="#0a0f1a" />
 
   <!-- Open Graph -->
   <meta property="og:type"        content="website" />
   <meta property="og:locale"      content="pt_BR" />
   <meta property="og:title"       content="VX Consultoria | Fábio Castello" />
   <meta property="og:description" content="Estruturo processos comerciais que geram vendas previsíveis. CRM, funil e time comercial organizados em até 90 dias." />
-  <meta property="og:image"       content="IMG_3762.JPG.jpeg" />
+  <meta property="og:image"       content="fabio1.png" />
 
   <!-- Twitter Card -->
-  <meta name="twitter:card"        content="summary" />
+  <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:title"       content="VX Consultoria | Fábio Castello" />
   <meta name="twitter:description" content="Estruturo processos comerciais que geram vendas previsíveis." />
+
+  <!-- Favicon SVG inline -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230a0f1a'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='13' font-weight='700' fill='%23F97316'>VX</text></svg>" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,19 +30,25 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --bg: #080808;
-      --bg-card: #111111;
-      --bg-card-hover: #1a1a1a;
-      --text: #f0ece4;
-      --text-muted: #8a8578;
-      --accent: #e07a2f;
-      --accent-glow: rgba(224, 122, 47, 0.15);
-      --green: #2ecc71;
-      --red: #e74c3c;
-      --border: #1f1f1f;
-      --border-accent: rgba(224, 122, 47, 0.3);
-      --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
-      --font-display: 'Instrument Serif', Georgia, serif;
+      --bg:               #0a0f1a;
+      --bg-card:          #0f1526;
+      --bg-card-hover:    #162038;
+      --bg-light:         #ffffff;
+      --bg-light-alt:     #f5f7fa;
+      --text:             #ffffff;
+      --text-muted:       #a0a8b8;
+      --text-dark:        #1a1a2e;
+      --text-dark-muted:  #6b7280;
+      --accent:           #F97316;
+      --accent-glow:      rgba(249, 115, 22, 0.15);
+      --accent-secondary: #f59e0b;
+      --green:            #2ecc71;
+      --red:              #e74c3c;
+      --border:           #1a2540;
+      --border-light:     #e5e7eb;
+      --border-accent:    rgba(249, 115, 22, 0.3);
+      --font-body:        'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-display:     'Instrument Serif', Georgia, serif;
     }
 
     html { scroll-behavior: smooth; }
@@ -50,6 +59,7 @@
       color: var(--text);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
     .container {
@@ -58,236 +68,504 @@
       padding: 0 24px;
     }
 
+    /* ── UTILITÁRIOS ──────────────────────────── */
+
+    .section-light {
+      background: var(--bg-light);
+      color: var(--text-dark);
+    }
+
+    .section-light .section-label { color: var(--accent); background: rgba(249,115,22,0.1); }
+    .section-light .section-title { color: var(--text-dark); }
+    .section-light .section-sub   { color: var(--text-dark-muted); }
+
+    .highlight { color: var(--accent); }
+
+    /* ── SEÇÃO BASE ───────────────────────────── */
+    section { padding: 96px 0; }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(249,115,22,0.1);
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-family: var(--font-body);
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin-bottom: 56px;
+      line-height: 1.7;
+    }
+
+    /* ── BOTÃO CTA ────────────────────────────── */
+    .cta-btn {
+      display: inline-block;
+      padding: 17px 40px;
+      background: var(--accent);
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      text-decoration: none;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+      box-shadow: 0 4px 28px rgba(249, 115, 22, 0.35);
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 36px rgba(249, 115, 22, 0.45);
+      background: #27ae60;
+    }
+
+    .cta-btn.cta-sm {
+      padding: 13px 28px;
+      font-size: 0.82rem;
+    }
+
     /* ── HERO ─────────────────────────────────── */
     .hero {
       min-height: 100vh;
       display: flex;
       align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 80px 24px;
+      padding: 80px 0;
       position: relative;
       overflow: hidden;
+      background: var(--bg);
     }
 
+    /* Glow verde no topo */
     .hero::before {
       content: '';
       position: absolute;
-      top: -50%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 800px;
-      height: 800px;
-      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+      top: -30%;
+      left: -10%;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(249,115,22,0.12) 0%, transparent 65%);
       pointer-events: none;
     }
 
-    .hero-content { position: relative; z-index: 1; max-width: 720px; }
-
-    .hero-avatar {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid var(--accent);
-      margin-bottom: 24px;
-      box-shadow: 0 0 40px var(--accent-glow);
+    /* Glow sutil direita */
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -20%;
+      right: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(249,115,22,0.06) 0%, transparent 65%);
+      pointer-events: none;
     }
+
+    .hero .container { position: relative; z-index: 1; width: 100%; }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    /* Coluna texto */
+    .hero-text {}
 
     .hero-tag {
       display: inline-block;
       font-size: 0.7rem;
       font-weight: 700;
-      letter-spacing: 0.25em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 16px;
+      background: rgba(249,115,22,0.1);
+      padding: 7px 18px;
+      border-radius: 20px;
+      margin-bottom: 24px;
     }
 
     .hero h1 {
-      font-family: var(--font-display);
-      font-size: clamp(2.2rem, 5vw, 3.8rem);
-      font-weight: 400;
-      line-height: 1.15;
+      font-family: var(--font-body);
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 800;
+      line-height: 1.1;
       color: var(--text);
       margin-bottom: 20px;
     }
 
-    .hero h1 em {
-      font-style: italic;
-      color: var(--accent);
-    }
-
     .hero-sub {
-      font-size: 1.05rem;
+      font-size: 1.1rem;
       color: var(--text-muted);
-      max-width: 540px;
-      margin: 0 auto 32px;
+      line-height: 1.7;
+      margin-bottom: 16px;
+      max-width: 480px;
     }
 
-    .hero-guarantee {
-      display: inline-block;
-      font-size: 0.8rem;
+    .hero-guarantee-inline {
+      font-size: 0.88rem;
       font-weight: 600;
       color: var(--accent);
-      border: 1px solid var(--border-accent);
-      background: var(--accent-glow);
-      padding: 10px 24px;
-      border-radius: 8px;
       margin-bottom: 36px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    .cta-btn {
-      display: inline-block;
-      padding: 16px 40px;
-      background: var(--accent);
-      color: #fff;
-      font-size: 0.95rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      text-decoration: none;
-      border-radius: 8px;
-      border: none;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 4px 24px rgba(224, 122, 47, 0.3);
-    }
-
-    .cta-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 32px rgba(224, 122, 47, 0.4);
-    }
-
-    /* ── SECTIONS ─────────────────────────────── */
-    section { padding: 80px 0; }
-
-    .section-label {
+    .hero-guarantee-inline::before {
+      content: '✓';
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(249,115,22,0.15);
       font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 12px;
+      flex-shrink: 0;
     }
 
-    .section-title {
-      font-family: var(--font-display);
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 400;
-      line-height: 1.2;
-      margin-bottom: 16px;
+    .hero-cta-group {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 14px;
     }
 
-    .section-sub {
+    .hero-cta-group .cta-btn {
       font-size: 1rem;
+      padding: 18px 48px;
+    }
+
+    .hero-micro {
+      font-size: 0.82rem;
       color: var(--text-muted);
-      max-width: 600px;
+    }
+
+    /* Coluna foto */
+    .hero-photo-wrap {
+      position: relative;
+    }
+
+    .hero-photo {
+      width: 100%;
+      max-width: 480px;
+      border-radius: 20px;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      box-shadow:
+        0 0 0 1px rgba(249,115,22,0.2),
+        0 32px 80px rgba(0,0,0,0.5),
+        0 0 80px rgba(249,115,22,0.15);
+    }
+
+    /* Badge flutuante na foto */
+    .hero-badge {
+      position: absolute;
+      bottom: 24px;
+      left: -20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-accent);
+      border-radius: 12px;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+
+    .hero-badge-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(249,115,22,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .hero-badge-text strong {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .hero-badge-text span {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* ── DIVIDER ──────────────────────────────── */
+    .divider-bar {
+      width: 100%;
+      padding: 16px 0;
+      background: var(--bg-card);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .divider-bar .container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .divider-bar a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    /* ── PROVA SOCIAL (LIGHT) ────────────────── */
+    .prova-social { background: var(--bg-light); }
+
+    .proof-intro {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 56px;
+    }
+
+    .proof-intro .section-label { display: block; text-align: center; }
+
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
       margin-bottom: 48px;
     }
 
-    /* ── PROBLEMA ─────────────────────────────── */
-    .problema { background: var(--bg); border-top: 1px solid var(--border); }
+    .proof-card {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border-light);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: transform 0.25s, box-shadow 0.25s;
+      background: #fff;
+    }
+
+    .proof-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.14);
+    }
+
+    .proof-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ── PROBLEMA (LIGHT) ─────────────────────── */
+    .problema { background: var(--bg-light); }
 
     .pain-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
       gap: 16px;
+      margin-bottom: 48px;
     }
 
     .pain-item {
       display: flex;
       align-items: flex-start;
       gap: 14px;
-      padding: 20px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: var(--bg-card);
-      transition: border-color 0.3s;
+      padding: 20px 22px;
+      border-radius: 12px;
+      border: 1px solid var(--border-light);
+      background: #fff;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
     }
 
-    .pain-item:hover { border-color: var(--red); }
+    .pain-item:hover {
+      border-color: rgba(231,76,60,0.3);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      transform: translateY(-2px);
+    }
 
     .pain-icon {
       flex-shrink: 0;
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      background: rgba(231, 76, 60, 0.1);
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      background: rgba(231,76,60,0.08);
       display: flex;
       align-items: center;
       justify-content: center;
       color: var(--red);
-      font-size: 0.9rem;
+      font-size: 0.85rem;
+      font-weight: 700;
     }
 
     .pain-item p {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      line-height: 1.5;
+      font-size: 0.92rem;
+      color: var(--text-dark-muted);
+      line-height: 1.55;
+      font-weight: 500;
     }
 
     .frase-forte {
-      margin-top: 48px;
-      padding: 32px;
+      padding: 36px 40px;
       text-align: center;
-      border: 1px solid var(--border-accent);
+      border: 1px solid var(--border-light);
+      border-left: 4px solid var(--red);
       border-radius: 12px;
-      background: var(--accent-glow);
+      background: var(--bg-light-alt);
+      margin-bottom: 48px;
     }
 
     .frase-forte p {
       font-family: var(--font-display);
-      font-size: clamp(1.3rem, 3vw, 1.8rem);
-      color: var(--text);
+      font-size: clamp(1.2rem, 2.5vw, 1.65rem);
+      color: var(--text-dark);
       font-style: italic;
+      line-height: 1.5;
     }
 
-    /* ── SOLUÇÃO ──────────────────────────────── */
-    .solucao { background: var(--bg-card); }
+    .section-cta {
+      text-align: center;
+    }
 
-    .entrega-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    /* ── SOLUÇÃO (DARK) ───────────────────────── */
+    .solucao { background: var(--bg); }
+
+    .solucao-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 32px;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+    }
+
+    .solucao-header-text {}
+
+    .solucao-header-text .section-sub { margin-bottom: 0; }
+
+    .entrega-list {
+      display: flex;
+      flex-direction: column;
       gap: 20px;
     }
 
     .entrega-card {
-      padding: 28px;
-      border-radius: 12px;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 0;
       border: 1px solid var(--border);
-      background: var(--bg);
-      transition: border-color 0.3s, transform 0.2s;
+      border-radius: 16px;
+      overflow: hidden;
+      background: var(--bg-card);
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
     }
 
     .entrega-card:hover {
       border-color: var(--border-accent);
       transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
     }
 
-    .entrega-card h3 {
-      font-size: 1.05rem;
+    .entrega-img {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .entrega-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: brightness(0.75) saturate(0.8);
+    }
+
+    .entrega-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(10,15,26,0.6) 0%, rgba(249,115,22,0.08) 100%);
+    }
+
+    .entrega-img-num {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: rgba(255,255,255,0.12);
+      line-height: 1;
+      font-family: var(--font-body);
+    }
+
+    .entrega-body {
+      padding: 28px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .entrega-tag {
+      display: inline-block;
+      font-size: 0.65rem;
       font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent-secondary);
+      background: rgba(245,158,11,0.12);
+      padding: 4px 12px;
+      border-radius: 6px;
       margin-bottom: 12px;
-      color: var(--text);
     }
 
-    .entrega-card h3 span { color: var(--accent); }
+    .entrega-body h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 14px;
+      line-height: 1.3;
+    }
 
-    .entrega-card ul {
+    .entrega-body ul {
       list-style: none;
       padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
     }
 
-    .entrega-card ul li {
-      font-size: 0.85rem;
+    .entrega-body ul li {
+      font-size: 0.87rem;
       color: var(--text-muted);
-      padding: 6px 0;
       padding-left: 18px;
       position: relative;
+      line-height: 1.5;
     }
 
-    .entrega-card ul li::before {
+    .entrega-body ul li::before {
       content: '→';
       position: absolute;
       left: 0;
@@ -295,28 +573,26 @@
       font-size: 0.75rem;
     }
 
-    /* ── PRA QUEM É ──────────────────────────── */
-    .qualificacao { background: var(--bg); border-top: 1px solid var(--border); }
+    /* ── QUALIFICAÇÃO (LIGHT) ─────────────────── */
+    .qualificacao { background: var(--bg-light); }
 
     .qual-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 32px;
+      gap: 40px;
+      margin-bottom: 56px;
     }
 
-    @media (max-width: 640px) {
-      .qual-grid { grid-template-columns: 1fr; }
-    }
-
-    .qual-box { padding: 0; }
+    .qual-box {}
 
     .qual-box h3 {
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 20px;
+      font-size: 1.05rem;
+      font-weight: 800;
+      margin-bottom: 24px;
       display: flex;
       align-items: center;
       gap: 10px;
+      color: var(--text-dark);
     }
 
     .qual-box ul {
@@ -325,20 +601,23 @@
     }
 
     .qual-box ul li {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      padding: 10px 0;
-      padding-left: 24px;
+      font-size: 0.92rem;
+      color: var(--text-dark-muted);
+      padding: 12px 0;
+      padding-left: 28px;
       position: relative;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid var(--border-light);
+      font-weight: 500;
     }
+
+    .qual-box ul li:last-child { border-bottom: none; }
 
     .qual-box.yes ul li::before {
       content: '✓';
       position: absolute;
       left: 0;
       color: var(--green);
-      font-weight: 700;
+      font-weight: 800;
     }
 
     .qual-box.no ul li::before {
@@ -346,48 +625,27 @@
       position: absolute;
       left: 0;
       color: var(--red);
-      font-weight: 700;
+      font-weight: 800;
     }
 
-    /* ── GARANTIA ─────────────────────────────── */
-    .garantia {
-      background: var(--bg-card);
-      text-align: center;
+    /* ── TRANSFORMAÇÃO (DARK) ─────────────────── */
+    .transformacao {
+      background: var(--bg);
+      position: relative;
+      overflow: hidden;
     }
 
-    .garantia-box {
-      max-width: 640px;
-      margin: 0 auto;
-      padding: 48px 32px;
-      border: 1px solid var(--border-accent);
-      border-radius: 16px;
-      background: linear-gradient(135deg, var(--accent-glow) 0%, transparent 60%);
+    .transformacao::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(249,115,22,0.08) 0%, transparent 65%);
+      pointer-events: none;
     }
-
-    .garantia-box h3 {
-      font-family: var(--font-display);
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
-      margin-bottom: 20px;
-    }
-
-    .garantia-box h3 span { color: var(--accent); }
-
-    .garantia-box p {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      margin-bottom: 12px;
-      line-height: 1.7;
-    }
-
-    .garantia-box .destaque {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--accent);
-      margin-top: 20px;
-    }
-
-    /* ── TRANSFORMAÇÃO ────────────────────────── */
-    .transformacao { background: var(--bg); border-top: 1px solid var(--border); }
 
     .transform-grid {
       display: grid;
@@ -395,14 +653,10 @@
       gap: 32px;
     }
 
-    @media (max-width: 640px) {
-      .transform-grid { grid-template-columns: 1fr; }
-    }
-
     .transform-col h3 {
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 20px;
+      font-size: 1.05rem;
+      font-weight: 800;
+      margin-bottom: 24px;
       display: flex;
       align-items: center;
       gap: 10px;
@@ -414,19 +668,23 @@
     }
 
     .transform-col ul li {
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       color: var(--text-muted);
-      padding: 10px 0;
-      padding-left: 20px;
+      padding: 11px 0;
+      padding-left: 24px;
       position: relative;
       border-bottom: 1px solid var(--border);
+      font-weight: 500;
     }
+
+    .transform-col ul li:last-child { border-bottom: none; }
 
     .transform-col.before ul li::before {
       content: '—';
       position: absolute;
       left: 0;
       color: var(--red);
+      font-weight: 700;
     }
 
     .transform-col.after ul li::before {
@@ -434,14 +692,89 @@
       position: absolute;
       left: 0;
       color: var(--green);
-      font-weight: 700;
+      font-weight: 800;
     }
 
-    /* ── CTA FINAL ────────────────────────────── */
+    /* ── GARANTIA (LIGHT) ─────────────────────── */
+    .garantia { background: var(--bg-light); }
+
+    .garantia-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    .garantia-box {
+      padding: 48px 40px;
+      border: 2px solid var(--accent);
+      border-radius: 20px;
+      background: #fff;
+      box-shadow: 0 4px 40px rgba(249,115,22,0.12);
+    }
+
+    .garantia-box h3 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      margin-bottom: 20px;
+      color: var(--text-dark);
+      line-height: 1.2;
+    }
+
+    .garantia-badge {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.9rem;
+      padding: 4px 14px;
+      border-radius: 6px;
+      margin-left: 6px;
+    }
+
+    .garantia-box p {
+      font-size: 1rem;
+      color: var(--text-dark-muted);
+      margin-bottom: 14px;
+      line-height: 1.75;
+    }
+
+    .garantia-box .destaque {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-top: 20px;
+      padding: 16px 20px;
+      background: rgba(249,115,22,0.08);
+      border-radius: 10px;
+      border-left: 3px solid var(--accent);
+    }
+
+    .garantia-text { padding: 8px 0; }
+
+    .garantia-text h4 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 16px;
+    }
+
+    .garantia-text p {
+      font-size: 0.97rem;
+      color: var(--text-dark-muted);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .garantia-text .cta-btn {
+      margin-top: 8px;
+    }
+
+    /* ── CTA FINAL (DARK) ─────────────────────── */
     .cta-final {
-      background: var(--bg-card);
+      background: var(--bg);
       text-align: center;
-      padding: 100px 24px;
+      padding: 120px 24px;
       position: relative;
       overflow: hidden;
     }
@@ -449,30 +782,38 @@
     .cta-final::before {
       content: '';
       position: absolute;
-      bottom: -40%;
+      bottom: -30%;
       left: 50%;
       transform: translateX(-50%);
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(249,115,22,0.12) 0%, transparent 65%);
       pointer-events: none;
     }
 
     .cta-final .container { position: relative; z-index: 1; }
 
     .cta-final h2 {
-      font-family: var(--font-display);
-      font-size: clamp(1.8rem, 4vw, 3rem);
-      margin-bottom: 16px;
+      font-family: var(--font-body);
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 800;
+      margin-bottom: 20px;
+      line-height: 1.15;
     }
 
     .cta-final .sub {
-      font-size: 1rem;
+      font-size: 1.05rem;
       color: var(--text-muted);
-      margin-bottom: 40px;
-      max-width: 480px;
+      margin-bottom: 48px;
+      max-width: 500px;
       margin-left: auto;
       margin-right: auto;
+      line-height: 1.7;
+    }
+
+    .cta-final .cta-btn {
+      font-size: 1.05rem;
+      padding: 20px 56px;
     }
 
     .urgencia {
@@ -481,7 +822,7 @@
       font-weight: 600;
       color: var(--accent);
       border: 1px solid var(--border-accent);
-      background: var(--accent-glow);
+      background: rgba(249,115,22,0.07);
       padding: 10px 24px;
       border-radius: 8px;
       margin-top: 24px;
@@ -490,29 +831,55 @@
     /* ── FOOTER ────────────────────────────────── */
     footer {
       text-align: center;
-      padding: 40px 24px;
+      padding: 48px 24px;
       border-top: 1px solid var(--border);
+      background: var(--bg-card);
       color: var(--text-muted);
-      font-size: 0.75rem;
+      font-size: 0.78rem;
     }
 
     footer a {
       color: var(--accent);
       text-decoration: none;
+      font-weight: 600;
     }
 
-    /* ── ANIMATIONS ────────────────────────────── */
+    footer a:hover { text-decoration: underline; }
+
+    .footer-social {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .footer-social a {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-social a:hover { color: var(--accent); text-decoration: none; }
+
+    /* ── ANIMAÇÕES ──────────────────────────────── */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to { opacity: 1; transform: translateY(0); }
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
-    .hero-content { animation: fadeUp 0.8s ease-out; }
+    .hero-text { animation: fadeUp 0.9s ease-out; }
+    .hero-photo-wrap { animation: fadeUp 1s ease-out 0.15s both; }
 
     .fade-in {
       opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      transform: translateY(22px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
     }
 
     .fade-in.visible {
@@ -520,32 +887,186 @@
       transform: translateY(0);
     }
 
-    /* ── RESPONSIVE ────────────────────────────── */
-    @media (max-width: 480px) {
-      section { padding: 60px 0; }
+    /* ── RESPONSIVO ────────────────────────────── */
+
+    @media (max-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 48px;
+      }
+
+      .hero-text {
+        order: 2;
+      }
+
+      .hero-photo-wrap {
+        order: 1;
+        display: flex;
+        justify-content: center;
+      }
+
+      .hero-photo {
+        max-width: 360px;
+        max-height: 420px;
+      }
+
+      .hero-badge {
+        left: auto;
+        right: 0;
+        bottom: 0;
+      }
+
+      .hero-sub { max-width: 560px; margin-left: auto; margin-right: auto; }
+
+      .hero-guarantee-inline {
+        justify-content: center;
+      }
+
+      .hero-cta-group {
+        align-items: center;
+      }
+
+      .solucao-header {
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .garantia-wrap {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      section { padding: 72px 0; }
+
+      .entrega-card {
+        grid-template-columns: 1fr;
+      }
+
+      .entrega-img {
+        height: 180px;
+      }
+
+      .entrega-img img {
+        height: 180px;
+      }
+
+      .qual-grid { grid-template-columns: 1fr; gap: 28px; }
+      .transform-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+
+    @media (max-width: 640px) {
+      section { padding: 64px 0; }
+
+      .hero {
+        min-height: auto;
+        padding: 72px 0 64px;
+      }
+
+      .hero h1 { font-size: 2.1rem; }
+
+      .hero-photo { max-width: 280px; max-height: 320px; }
+
+      .hero-badge { display: none; }
+
       .cta-btn { width: 100%; text-align: center; }
-      .hero { padding: 60px 24px; min-height: auto; }
+
+      .frase-forte { padding: 24px; }
+
+      .garantia-box { padding: 32px 24px; }
+
+      .cta-final { padding: 80px 24px; }
+    }
+
+    @media (max-width: 480px) {
+      .container { padding: 0 16px; }
+      section { padding: 56px 0; }
+      .pain-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
-
 <body>
 
   <!-- ══════════ HERO ══════════ -->
   <section class="hero">
-    <div class="hero-content">
-      <img src="IMG_3762.JPG.jpeg" alt="Fábio Castello" class="hero-avatar" width="100" height="100">
-      <div class="hero-tag">Consultoria Comercial</div>
-      <h1>Estruturo processos que geram <em>vendas previsíveis</em></h1>
-      <p class="hero-sub">CRM, funil e time comercial organizados. Você não precisa mais improvisar — nós implementamos um sistema completo que organiza, automatiza e escala suas vendas.</p>
-      <div class="hero-guarantee">CRM, funil e time organizados em até 90 dias — ou seu dinheiro de volta.</div>
-      <br><br>
-      <a href="https://wa.me/5592999999999?text=Quero%20estruturar%20meu%20comercial" class="cta-btn">Quero estruturar meu comercial</a>
+    <div class="container">
+      <div class="hero-grid">
+
+        <!-- Texto -->
+        <div class="hero-text">
+          <div class="hero-tag">Consultoria Comercial</div>
+          <h1>Estruturo processos que geram <span class="highlight">vendas previsíveis</span></h1>
+          <p class="hero-sub">CRM, funil e time comercial organizados. Você não precisa mais improvisar — nós implementamos um sistema completo que organiza, automatiza e escala suas vendas.</p>
+          <div class="hero-guarantee-inline">CRM, funil e time organizados em até 90 dias — ou seu dinheiro de volta.</div>
+          <div class="hero-cta-group">
+            <a href="https://wa.me/19047491633?text=Oi%20F%C3%A1bio%2C%20quero%20estruturar%20meu%20comercial" class="cta-btn" target="_blank" rel="noopener noreferrer">
+              Quero estruturar meu comercial
+            </a>
+            <span class="hero-micro">Resposta no mesmo dia · Sem compromisso</span>
+          </div>
+        </div>
+
+        <!-- Foto -->
+        <div class="hero-photo-wrap">
+          <img src="fabio1.png" alt="Fábio Castello — Consultor Comercial" class="hero-photo" width="480">
+          <div class="hero-badge">
+            <div class="hero-badge-icon">✓</div>
+            <div class="hero-badge-text">
+              <strong>Garantia VX 90D</strong>
+              <span>100% do investimento de volta</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
   </section>
 
-  <!-- ══════════ PROBLEMA ══════════ -->
-  <section class="problema">
+  <!-- Divider social -->
+  <div class="divider-bar">
+    <div class="container">
+      <span>Siga o Fábio:</span>
+      <a href="https://www.instagram.com/fabiocastellob" target="_blank" rel="noopener noreferrer">@fabiocastellob</a>
+    </div>
+  </div>
+
+  <!-- ══════════ PROVA SOCIAL (LIGHT) ══════════ -->
+  <section class="prova-social section-light">
+    <div class="container fade-in">
+      <div class="proof-intro">
+        <div class="section-label">Resultados reais</div>
+        <h2 class="section-title">Empresas que estruturaram<br>seu comercial com a VX</h2>
+        <p class="section-sub" style="margin: 0 auto;">Resultados de clientes que pararam de improvisar e implementaram processo.</p>
+      </div>
+
+      <div class="proof-grid">
+        <!-- Substitua os src pelos nomes reais dos prints quando subir -->
+        <div class="proof-card">
+          <img src="proof1.jpeg" alt="Resultado cliente 1" loading="lazy">
+        </div>
+        <div class="proof-card">
+          <img src="proof2.jpeg" alt="Resultado cliente 2" loading="lazy">
+        </div>
+        <div class="proof-card">
+          <img src="proof3.jpeg" alt="Resultado cliente 3" loading="lazy">
+        </div>
+        <div class="proof-card">
+          <img src="proof4.jpeg" alt="Resultado cliente 4" loading="lazy">
+        </div>
+      </div>
+
+      <div class="section-cta">
+        <a href="https://wa.me/19047491633?text=Oi%20F%C3%A1bio%2C%20quero%20ter%20esses%20resultados" class="cta-btn" target="_blank" rel="noopener noreferrer">
+          Quero ter esses resultados
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ PROBLEMA (LIGHT) ══════════ -->
+  <section class="problema section-light">
     <div class="container fade-in">
       <div class="section-label">O problema</div>
       <h2 class="section-title">Você provavelmente está<br>passando por isso:</h2>
@@ -581,73 +1102,142 @@
       <div class="frase-forte">
         <p>O problema não é falta de cliente. É falta de processo.</p>
       </div>
-    </div>
-  </section>
 
-  <!-- ══════════ SOLUÇÃO ══════════ -->
-  <section class="solucao">
-    <div class="container fade-in">
-      <div class="section-label">A solução</div>
-      <h2 class="section-title">Nós construímos sua<br>máquina de vendas</h2>
-      <p class="section-sub">Implementamos um sistema completo que organiza, automatiza e escala suas vendas.</p>
-
-      <div class="entrega-grid">
-        <div class="entrega-card">
-          <h3><span>01.</span> Estrutura e tecnologia</h3>
-          <ul>
-            <li>Implementação completa do CRM</li>
-            <li>Automações de mensagens e follow-up</li>
-            <li>Organização de funis de vendas</li>
-            <li>Dashboard com indicadores de vendas, conversão e pipeline</li>
-          </ul>
-        </div>
-        <div class="entrega-card">
-          <h3><span>02.</span> Estratégia e posicionamento</h3>
-          <ul>
-            <li>Mapeamento da Jornada do Cliente</li>
-            <li>Definição do Perfil de Cliente Ideal (ICP)</li>
-            <li>Análise de mercado e concorrentes</li>
-          </ul>
-        </div>
-        <div class="entrega-card">
-          <h3><span>03.</span> Processo comercial</h3>
-          <ul>
-            <li>Padronização do processo de vendas</li>
-            <li>Playbook comercial completo</li>
-            <li>Rotina comercial estruturada</li>
-          </ul>
-        </div>
-        <div class="entrega-card">
-          <h3><span>04.</span> Pessoas e equipe</h3>
-          <ul>
-            <li>Descrição de cargos comerciais</li>
-            <li>Estruturação da rotina da equipe</li>
-            <li>Acompanhamento comercial contínuo</li>
-            <li>Treinamento da equipe</li>
-          </ul>
-        </div>
-        <div class="entrega-card">
-          <h3><span>05.</span> Comunicação e vendas</h3>
-          <ul>
-            <li>Script de atendimento</li>
-            <li>Script de follow-up</li>
-            <li>Script de quebra de objeções</li>
-          </ul>
-        </div>
-        <div class="entrega-card">
-          <h3><span>06.</span> Acompanhamento e evolução</h3>
-          <ul>
-            <li>Acompanhamento comercial semanal</li>
-            <li>Treinamento em grupo (2x por mês)</li>
-            <li>Acesso à VX Academy (treinamentos gravados)</li>
-          </ul>
-        </div>
+      <div class="section-cta">
+        <a href="https://wa.me/19047491633?text=Oi%20F%C3%A1bio%2C%20quero%20resolver%20isso" class="cta-btn" target="_blank" rel="noopener noreferrer">
+          Quero resolver isso agora
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- ══════════ PRA QUEM É ══════════ -->
-  <section class="qualificacao">
+  <!-- ══════════ SOLUÇÃO (DARK) ══════════ -->
+  <section class="solucao">
+    <div class="container fade-in">
+
+      <div class="solucao-header">
+        <div class="solucao-header-text">
+          <div class="section-label">A solução</div>
+          <h2 class="section-title">Nós construímos sua<br>máquina de vendas</h2>
+          <p class="section-sub">Implementamos um sistema completo que organiza, automatiza e escala suas vendas.</p>
+        </div>
+        <a href="https://wa.me/19047491633?text=Oi%20F%C3%A1bio%2C%20quero%20construir%20minha%20m%C3%A1quina%20de%20vendas" class="cta-btn cta-sm" target="_blank" rel="noopener noreferrer" style="white-space: nowrap; align-self: flex-start; margin-top: 48px;">
+          Quero me aplicar agora
+        </a>
+      </div>
+
+      <div class="entrega-list">
+
+        <div class="entrega-card">
+          <div class="entrega-img">
+            <img src="fabio1.png" alt="Estrutura e tecnologia" loading="lazy">
+            <div class="entrega-img-overlay"></div>
+            <div class="entrega-img-num">01</div>
+          </div>
+          <div class="entrega-body">
+            <span class="entrega-tag">Tecnologia</span>
+            <h3>Estrutura e tecnologia</h3>
+            <ul>
+              <li>Implementação completa do CRM</li>
+              <li>Automações de mensagens e follow-up</li>
+              <li>Organização de funis de vendas</li>
+              <li>Dashboard com indicadores de vendas, conversão e pipeline</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="entrega-card">
+          <div class="entrega-img">
+            <img src="fabio2.png" alt="Estratégia e posicionamento" loading="lazy">
+            <div class="entrega-img-overlay"></div>
+            <div class="entrega-img-num">02</div>
+          </div>
+          <div class="entrega-body">
+            <span class="entrega-tag">Estratégia</span>
+            <h3>Estratégia e posicionamento</h3>
+            <ul>
+              <li>Mapeamento da Jornada do Cliente</li>
+              <li>Definição do Perfil de Cliente Ideal (ICP)</li>
+              <li>Análise de mercado e concorrentes</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="entrega-card">
+          <div class="entrega-img">
+            <img src="fabio1.png" alt="Processo comercial" loading="lazy">
+            <div class="entrega-img-overlay"></div>
+            <div class="entrega-img-num">03</div>
+          </div>
+          <div class="entrega-body">
+            <span class="entrega-tag">Processos</span>
+            <h3>Processo comercial</h3>
+            <ul>
+              <li>Padronização do processo de vendas</li>
+              <li>Playbook comercial completo</li>
+              <li>Rotina comercial estruturada</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="entrega-card">
+          <div class="entrega-img">
+            <img src="fabio2.png" alt="Pessoas e equipe" loading="lazy">
+            <div class="entrega-img-overlay"></div>
+            <div class="entrega-img-num">04</div>
+          </div>
+          <div class="entrega-body">
+            <span class="entrega-tag">Equipe</span>
+            <h3>Pessoas e equipe</h3>
+            <ul>
+              <li>Descrição de cargos comerciais</li>
+              <li>Estruturação da rotina da equipe</li>
+              <li>Acompanhamento comercial contínuo</li>
+              <li>Treinamento da equipe</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="entrega-card">
+          <div class="entrega-img">
+            <img src="fabio1.png" alt="Comunicação e vendas" loading="lazy">
+            <div class="entrega-img-overlay"></div>
+            <div class="entrega-img-num">05</div>
+          </div>
+          <div class="entrega-body">
+            <span class="entrega-tag">Vendas</span>
+            <h3>Comunicação e vendas</h3>
+            <ul>
+              <li>Script de atendimento</li>
+              <li>Script de follow-up</li>
+              <li>Script de quebra de objeções</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="entrega-card">
+          <div class="entrega-img">
+            <img src="fabio2.png" alt="Acompanhamento e evolução" loading="lazy">
+            <div class="entrega-img-overlay"></div>
+            <div class="entrega-img-num">06</div>
+          </div>
+          <div class="entrega-body">
+            <span class="entrega-tag">Acompanhamento</span>
+            <h3>Acompanhamento e evolução</h3>
+            <ul>
+              <li>Acompanhamento comercial semanal</li>
+              <li>Treinamento em grupo (2x por mês)</li>
+              <li>Acesso à VX Academy (treinamentos gravados)</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ QUALIFICAÇÃO (LIGHT) ══════════ -->
+  <section class="qualificacao section-light">
     <div class="container fade-in">
       <div class="section-label">Qualificação</div>
       <h2 class="section-title">Pra quem é — e pra quem não é</h2>
@@ -672,10 +1262,16 @@
           </ul>
         </div>
       </div>
+
+      <div class="section-cta">
+        <a href="https://wa.me/19047491633?text=Oi%20F%C3%A1bio%2C%20quero%20estruturar%20meu%20comercial" class="cta-btn" target="_blank" rel="noopener noreferrer">
+          Quero estruturar meu comercial
+        </a>
+      </div>
     </div>
   </section>
 
-  <!-- ══════════ TRANSFORMAÇÃO ══════════ -->
+  <!-- ══════════ TRANSFORMAÇÃO (DARK) ══════════ -->
   <section class="transformacao">
     <div class="container fade-in">
       <div class="section-label">Transformação</div>
@@ -707,24 +1303,39 @@
     </div>
   </section>
 
-  <!-- ══════════ GARANTIA ══════════ -->
-  <section class="garantia">
+  <!-- ══════════ GARANTIA (LIGHT) ══════════ -->
+  <section class="garantia section-light">
     <div class="container fade-in">
-      <div class="garantia-box">
-        <div class="section-label">O diferencial</div>
-        <h3>Garantia VX <span>90D</span></h3>
-        <p>Se em até 90 dias nós não estruturarmos seu CRM, seu processo comercial e sua operação de vendas:</p>
-        <div class="destaque">Devolvemos 100% do seu investimento. Sem risco.</div>
+      <div class="garantia-wrap">
+
+        <div class="garantia-box">
+          <div class="section-label">O diferencial</div>
+          <h3>Garantia VX <span class="garantia-badge">90D</span></h3>
+          <p>Se em até 90 dias nós não estruturarmos seu CRM, seu processo comercial e sua operação de vendas:</p>
+          <div class="destaque">Devolvemos 100% do seu investimento. Sem risco.</div>
+        </div>
+
+        <div class="garantia-text">
+          <h4>Por que oferecemos essa garantia?</h4>
+          <p>Porque sabemos exatamente o que fazemos. Nosso método foi desenvolvido para entregar resultados mensuráveis — CRM rodando, processo documentado, equipe treinada — dentro do prazo.</p>
+          <p>Se não cumprirmos, você não paga. Simples assim.</p>
+          <a href="https://wa.me/19047491633?text=Oi%20F%C3%A1bio%2C%20quero%20saber%20mais%20sobre%20a%20consultoria" class="cta-btn" target="_blank" rel="noopener noreferrer">
+            Quero começar sem risco
+          </a>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- ══════════ CTA FINAL ══════════ -->
+  <!-- ══════════ CTA FINAL (DARK) ══════════ -->
   <section class="cta-final">
     <div class="container fade-in">
-      <h2>Pronto para parar de<br>perder vendas?</h2>
+      <h2>Pronto para parar de<br><span class="highlight">perder vendas?</span></h2>
       <p class="sub">Você pode continuar no improviso... ou estruturar um sistema que gera vendas todos os dias.</p>
-      <a href="https://wa.me/5592999999999?text=Quero%20estruturar%20meu%20comercial" class="cta-btn">Quero estruturar meu comercial agora</a>
+      <a href="https://wa.me/19047491633?text=Oi%20F%C3%A1bio%2C%20quero%20estruturar%20meu%20comercial%20agora" class="cta-btn" target="_blank" rel="noopener noreferrer">
+        Quero estruturar meu comercial agora
+      </a>
       <br>
       <div class="urgencia">Condições especiais para novos clientes em Abril</div>
     </div>
@@ -732,7 +1343,15 @@
 
   <!-- ══════════ FOOTER ══════════ -->
   <footer>
-    <p>VX Consultoria — Fábio Castello | <a href="/links">@fabiocastellob</a></p>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/fabiocastellob" target="_blank" rel="noopener noreferrer">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        @fabiocastellob
+      </a>
+      <span>·</span>
+      <a href="/links">Links</a>
+    </div>
+    <p>VX Consultoria — Fábio Castello</p>
     <p style="margin-top: 8px;">© 2026 VX Consultoria. Todos os direitos reservados.</p>
   </footer>
 
@@ -744,7 +1363,7 @@
           entry.target.classList.add('visible');
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.08 });
 
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
   </script>
