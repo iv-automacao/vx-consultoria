@@ -227,9 +227,6 @@
       align-items: center;
     }
 
-    /* Coluna texto */
-    .hero-text {}
-
     .hero-tag {
       display: inline-block;
       font-size: 0.7rem;
@@ -503,8 +500,6 @@
       flex-wrap: wrap;
     }
 
-    .solucao-header-text {}
-
     .solucao-header-text .section-sub { margin-bottom: 0; }
 
     .entrega-list {
@@ -622,8 +617,6 @@
       gap: 40px;
       margin-bottom: 56px;
     }
-
-    .qual-box {}
 
     .qual-box h3 {
       font-size: 1.05rem;
@@ -927,18 +920,31 @@
       transform: translateY(0);
     }
 
+    /* ── GLOBAL MOBILE FIXES ─────────────────────── */
+
+    /* Remove tap delay e flash no iOS/Android */
+    a, button, .cta-btn {
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+
+    /* Previne overflow de palavras longas em telas estreitas */
+    h1, h2, h3, h4, p, li {
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+
     /* ── RESPONSIVO ────────────────────────────── */
 
+    /* Tablet grande / laptop pequeno */
     @media (max-width: 1024px) {
       .hero-grid {
         grid-template-columns: 1fr;
         text-align: center;
-        gap: 48px;
+        gap: 40px;
       }
 
-      .hero-text {
-        order: 2;
-      }
+      .hero-text { order: 2; }
 
       .hero-photo-wrap {
         order: 1;
@@ -947,8 +953,8 @@
       }
 
       .hero-photo {
-        max-width: 360px;
-        max-height: 420px;
+        max-width: 380px;
+        max-height: 460px;
       }
 
       .hero-badge {
@@ -957,73 +963,159 @@
         bottom: 0;
       }
 
-      .hero-sub { max-width: 560px; margin-left: auto; margin-right: auto; }
-
-      .hero-guarantee-inline {
-        justify-content: center;
+      .hero-sub {
+        max-width: 520px;
+        margin-left: auto;
+        margin-right: auto;
       }
 
-      .hero-cta-group {
-        align-items: center;
-      }
+      .hero-guarantee-inline { justify-content: center; }
+
+      .hero-cta-group { align-items: center; }
 
       .solucao-header {
         flex-direction: column;
-        gap: 24px;
+        gap: 20px;
       }
+
+      /* Esconde CTA duplicado no header da solução em tablet */
+      .solucao-header > .cta-btn { display: none; }
 
       .garantia-wrap {
         grid-template-columns: 1fr;
-        gap: 36px;
+        gap: 32px;
       }
     }
 
+    /* Tablet */
     @media (max-width: 768px) {
       section { padding: 72px 0; }
 
-      .entrega-card {
-        grid-template-columns: 1fr;
+      /* Proof grid 2x2 */
+      .proof-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
       }
 
-      .entrega-img {
-        height: 180px;
-      }
+      /* Entrega cards empilhados */
+      .entrega-card { grid-template-columns: 1fr; }
 
-      .entrega-img img {
-        height: 180px;
-      }
+      .entrega-img { height: 200px; }
+      .entrega-img img { height: 200px; }
 
-      .qual-grid { grid-template-columns: 1fr; gap: 28px; }
-      .transform-grid { grid-template-columns: 1fr; gap: 24px; }
+      .entrega-body { padding: 22px 24px; }
+
+      .qual-grid { grid-template-columns: 1fr; gap: 24px; }
+      .transform-grid { grid-template-columns: 1fr; gap: 20px; }
+
+      .section-sub { max-width: 100%; }
     }
 
+    /* Mobile */
     @media (max-width: 640px) {
       section { padding: 64px 0; }
 
       .hero {
         min-height: auto;
-        padding: 72px 0 64px;
+        padding: 64px 0 56px;
       }
 
-      .hero h1 { font-size: 2.1rem; }
+      .hero h1 {
+        font-size: clamp(1.9rem, 7.5vw, 2.2rem);
+        line-height: 1.15;
+      }
 
-      .hero-photo { max-width: 280px; max-height: 320px; }
+      .hero-sub {
+        font-size: 1rem;
+        max-width: 100%;
+      }
+
+      .hero-photo {
+        max-width: 300px;
+        max-height: 360px;
+      }
 
       .hero-badge { display: none; }
 
-      .cta-btn { width: 100%; text-align: center; }
+      /* CTA full width com altura mínima para touch target */
+      .cta-btn {
+        width: 100%;
+        text-align: center;
+        min-height: 52px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 16px 24px;
+      }
 
-      .frase-forte { padding: 24px; }
+      .hero-cta-group { gap: 10px; }
 
-      .garantia-box { padding: 32px 24px; }
+      .hero-guarantee-inline { font-size: 0.82rem; }
 
-      .cta-final { padding: 80px 24px; }
+      .frase-forte { padding: 22px 20px; }
+
+      .garantia-box { padding: 28px 20px; }
+
+      .garantia-text .cta-btn { margin-top: 4px; }
+
+      .cta-final { padding: 72px 24px; }
+
+      .cta-final h2 { font-size: clamp(1.75rem, 7vw, 2.4rem); }
+
+      /* Urgência com wrap adequado */
+      .urgencia {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        padding: 12px 16px;
+        white-space: normal;
+      }
+
+      /* Proof grid full width em phones pequenos */
+      .proof-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+
+      .section-title { font-size: clamp(1.75rem, 7vw, 2.2rem); }
+
+      .solucao-header-text .section-title { margin-bottom: 8px; }
+
+      .entrega-body { padding: 18px 20px; }
+      .entrega-body h3 { font-size: 1rem; }
+
+      /* Divider bar responsivo */
+      .divider-bar .container {
+        flex-wrap: wrap;
+        gap: 6px;
+        text-align: center;
+      }
     }
 
+    /* Mobile pequeno (≤480px) */
     @media (max-width: 480px) {
       .container { padding: 0 16px; }
       section { padding: 56px 0; }
+
       .pain-grid { grid-template-columns: 1fr; }
+
+      .hero-photo { max-width: 260px; }
+
+      /* Proof cards 2 colunas ainda funcionam */
+      .proof-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+
+      .qual-box ul li { font-size: 0.88rem; }
+      .transform-col ul li { font-size: 0.88rem; }
+
+      .garantia-box h3 { font-size: 1.5rem; }
+    }
+
+    /* Safe area para iPhone com notch/home bar */
+    @supports (padding: env(safe-area-inset-bottom)) {
+      footer {
+        padding-bottom: calc(48px + env(safe-area-inset-bottom));
+      }
+
+      .hero {
+        padding-top: max(80px, calc(64px + env(safe-area-inset-top)));
+      }
     }
 
     /* ── ACESSIBILIDADE ─────────────────────────── */
