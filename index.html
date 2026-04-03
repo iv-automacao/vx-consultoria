@@ -3,772 +3,751 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fábio Castello | Consultor de Vendas</title>
+  <title>VX Consultoria | Fábio Castello — Consultoria Comercial</title>
   <meta name="description" content="Estruturo processos comerciais que geram vendas previsíveis. CRM, funil e time comercial organizados em até 90 dias." />
   <meta name="theme-color" content="#080808" />
 
   <!-- Open Graph -->
   <meta property="og:type"        content="website" />
   <meta property="og:locale"      content="pt_BR" />
-  <meta property="og:title"       content="Fábio Castello | Consultor de Vendas" />
+  <meta property="og:title"       content="VX Consultoria | Fábio Castello" />
   <meta property="og:description" content="Estruturo processos comerciais que geram vendas previsíveis. CRM, funil e time comercial organizados em até 90 dias." />
   <meta property="og:image"       content="IMG_3762.JPG.jpeg" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card"        content="summary" />
-  <meta name="twitter:title"       content="Fábio Castello | Consultor de Vendas" />
-  <meta name="twitter:description" content="Estruturo processos comerciais que geram vendas previsíveis. CRM, funil e time comercial organizados em até 90 dias." />
+  <meta name="twitter:title"       content="VX Consultoria | Fábio Castello" />
+  <meta name="twitter:description" content="Estruturo processos comerciais que geram vendas previsíveis." />
 
-  <!-- Favicon SVG inline -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23080808'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='14' font-weight='700' fill='%23F97316'>FC</text></svg>" />
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet" />
-
-  <!-- Anime.js -->
-  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Serif&display=swap" rel="stylesheet">
 
   <style>
-    /* ── Design Tokens ─────────────────────────────── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
     :root {
-      --bg:             #080808;
-      --surface:        rgba(255, 255, 255, 0.04);
-      --border:         rgba(255, 255, 255, 0.08);
-      --border-hover:   #F97316;
-      --accent:         #F97316;
-      --glow:           rgba(249, 115, 22, 0.18);
-      --text-primary:   #FFFFFF;
-      --text-secondary: rgba(255, 255, 255, 0.55);
-      --icon-bg:        rgba(249, 115, 22, 0.12);
-      --radius-card:    14px;
-      --radius-icon:    10px;
-      --transition:     180ms ease-out;
+      --bg: #080808;
+      --bg-card: #111111;
+      --bg-card-hover: #1a1a1a;
+      --text: #f0ece4;
+      --text-muted: #8a8578;
+      --accent: #e07a2f;
+      --accent-glow: rgba(224, 122, 47, 0.15);
+      --green: #2ecc71;
+      --red: #e74c3c;
+      --border: #1f1f1f;
+      --border-accent: rgba(224, 122, 47, 0.3);
+      --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-display: 'Instrument Serif', Georgia, serif;
     }
 
-    /* ── Reset ─────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
-    html, body {
-      min-height: 100dvh;
-      background-color: var(--bg);
-      color: var(--text-primary);
-      font-family: 'Inter', sans-serif;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
-
-    /* ── Grid pattern sutil ────────────────────────── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-      background-size: 48px 48px;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    /* ── Textura de ruído ──────────────────────────── */
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.4'/%3E%3C/svg%3E");
-      background-repeat: repeat;
-      background-size: 128px 128px;
-      opacity: 0.04;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    /* ── Canvas de beams (sutil, atrás) ────────────── */
-    #beamsCanvas {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      filter: blur(15px);
-      opacity: 0.7;
-    }
-
-    /* ── Glow radial laranja superior — respira ─────── */
-    .glow-bg {
-      position: fixed;
-      top: -15%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 700px;
-      height: 700px;
-      background: radial-gradient(ellipse at center, var(--glow) 0%, transparent 68%);
-      pointer-events: none;
-      z-index: 2;
-      animation: glowPulse 5s ease-in-out infinite;
-    }
-
-    @keyframes glowPulse {
-      0%, 100% { opacity: 0.7; transform: translateX(-50%) scale(1); }
-      50%       { opacity: 1;   transform: translateX(-50%) scale(1.08); }
-    }
-
-    /* ── Segundo glow inferior ─────────────────────── */
-    .glow-bg-bottom {
-      position: fixed;
-      bottom: -20%;
-      right: -10%;
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(ellipse at center, rgba(249,115,22,0.07) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 2;
-    }
-
-    /* ── Cursor glow (desktop) ─────────────────────── */
-    .cursor-glow {
-      position: fixed;
-      width: 300px;
-      height: 300px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(249,115,22,0.06) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 3;
-      transform: translate(-50%, -50%);
-      transition: opacity 0.3s;
-      opacity: 0;
-    }
-
-    /* ── Container principal ────────────────────────── */
-    .container {
-      position: relative;
-      z-index: 4;
-      max-width: 480px;
-      margin: 0 auto;
-      padding: 56px 20px 64px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 32px;
-    }
-
-    /* ── Seção de perfil ────────────────────────────── */
-    .profile {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
-      text-align: center;
-      opacity: 0;
-    }
-
-    /* Avatar com borda gradiente laranja + ring pulsante */
-    .avatar-wrapper {
-      padding: 2px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), rgba(249,115,22,0.3));
-      animation: ringPulse 3.5s ease-in-out infinite;
-    }
-
-    @keyframes ringPulse {
-      0%, 100% { box-shadow: 0 0 0px 0px rgba(249,115,22,0); }
-      50%       { box-shadow: 0 0 18px 4px rgba(249,115,22,0.25); }
-    }
-
-    .avatar {
-      display: block;
-      width: 92px;
-      height: 92px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid var(--bg);
-    }
-
-    .profile-info {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      opacity: 0;
-    }
-
-    .name {
-      font-family: 'Playfair Display', serif;
-      font-size: 26px;
-      font-weight: 600;
-      color: var(--text-primary);
-      line-height: 1.2;
-    }
-
-    .title {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-
-    .bio {
-      font-size: 14px;
-      font-weight: 400;
-      color: var(--text-secondary);
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
       line-height: 1.6;
-      max-width: 320px;
+      -webkit-font-smoothing: antialiased;
     }
 
-    .bio-guarantee {
-      font-size: 13px;
-      font-weight: 400;
-      color: rgba(255,255,255,0.38);
-      line-height: 1.55;
-      width: 100%;
-      max-width: 480px;
-      padding: 12px 16px;
-      border: 1px solid rgba(249,115,22,0.15);
-      border-radius: 8px;
-      background: rgba(249,115,22,0.04);
-      text-align: center;
-      opacity: 0;
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
     }
 
-    .bio-guarantee strong {
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    /* ── Seção de links ─────────────────────────────── */
-    .links {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      width: 100%;
-    }
-
-    /* ── Card individual ────────────────────────────── */
-    .card {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 16px 18px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-card);
-      text-decoration: none;
-      color: inherit;
-      cursor: pointer;
-      position: relative;
-      overflow: visible;
-      will-change: transform;
-      transition:
-        border-color var(--transition),
-        box-shadow var(--transition);
-      -webkit-tap-highlight-color: transparent;
-      opacity: 0;
-      transform-style: preserve-3d;
-    }
-
-    /* Glow interno que segue o cursor */
-    .card-glow {
-      position: absolute;
-      inset: 0;
-      border-radius: var(--radius-card);
-      background: radial-gradient(circle 120px at var(--mx, 50%) var(--my, 50%), rgba(249,115,22,0.07), transparent);
-      opacity: 0;
-      transition: opacity 0.3s;
-      pointer-events: none;
-    }
-
-    .card:hover .card-glow {
-      opacity: 1;
-    }
-
-    /* ── Spotlight border — segue o cursor ──────── */
-    .card::before,
-    .card::after {
-      content: '';
-      position: absolute;
-      inset: -2px;
-      border-radius: calc(var(--radius-card) + 2px);
-      padding: 2px;
-      background-attachment: fixed;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.3s;
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      mask-composite: exclude;
-    }
-
-    .card:hover::before,
-    .card:focus-visible::before {
-      opacity: 1;
-      background-image: radial-gradient(
-        200px 200px at calc(var(--spot-x, 0) * 1px) calc(var(--spot-y, 0) * 1px),
-        hsla(25, 90%, 58%, 1),
-        transparent 100%
-      );
-      filter: brightness(1.4);
-    }
-
-    .card:hover::after,
-    .card:focus-visible::after {
-      opacity: 1;
-      background-image: radial-gradient(
-        120px 120px at calc(var(--spot-x, 0) * 1px) calc(var(--spot-y, 0) * 1px),
-        hsla(0, 0%, 100%, 0.35),
-        transparent 100%
-      );
-    }
-
-    .card:hover,
-    .card:focus-visible {
-      border-color: var(--border-hover);
-      box-shadow: 0 0 0 1px rgba(249,115,22,0.2), 0 12px 32px rgba(0,0,0,0.5);
-      outline: none;
-    }
-
-    .card:active {
-      transform: scale(0.97) !important;
-    }
-
-    /* ── Ícone ──────────────────────────────────────── */
-    .card-icon {
-      flex-shrink: 0;
+    /* ── HERO ─────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 42px;
-      height: 42px;
-      border-radius: var(--radius-icon);
-      background: var(--icon-bg);
+      text-align: center;
+      padding: 80px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content { position: relative; z-index: 1; max-width: 720px; }
+
+    .hero-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--accent);
+      margin-bottom: 24px;
+      box-shadow: 0 0 40px var(--accent-glow);
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
       color: var(--accent);
-      transition: background var(--transition);
+      margin-bottom: 16px;
     }
 
-    .card:hover .card-icon {
-      background: rgba(249,115,22,0.18);
-    }
-
-    /* SVG draw-in no hover */
-    .card-icon svg {
-      overflow: visible;
-    }
-
-    .card-icon svg path,
-    .card-icon svg rect,
-    .card-icon svg line,
-    .card-icon svg polyline {
-      stroke-dasharray: 100;
-      stroke-dashoffset: 0;
-      transition: stroke-dashoffset 0.4s ease-out;
-    }
-
-    .card:hover .card-icon svg path,
-    .card:hover .card-icon svg rect,
-    .card:hover .card-icon svg line,
-    .card:hover .card-icon svg polyline {
-      stroke-dashoffset: 0;
-      animation: iconDraw 0.4s ease-out forwards;
-    }
-
-    @keyframes iconDraw {
-      from { stroke-dashoffset: 100; }
-      to   { stroke-dashoffset: 0; }
-    }
-
-    /* ── Texto do card ──────────────────────────────── */
-    .card-content {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-
-    .card-title {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text-primary);
-      line-height: 1.4;
-    }
-
-    .card-sub {
-      font-size: 12px;
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
       font-weight: 400;
-      color: var(--text-secondary);
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 20px;
     }
 
-    /* ── Seta ───────────────────────────────────────── */
-    .card-arrow {
-      flex-shrink: 0;
-      color: var(--text-secondary);
-      transition: color var(--transition), transform var(--transition);
-    }
-
-    .card:hover .card-arrow,
-    .card:focus-visible .card-arrow {
+    .hero h1 em {
+      font-style: italic;
       color: var(--accent);
-      transform: translateX(3px);
     }
 
-    /* ── Footer ─────────────────────────────────────── */
-    .footer {
-      margin-top: 8px;
-      font-size: 11px;
-      color: rgba(255,255,255,0.2);
-      letter-spacing: 0.04em;
-      opacity: 0;
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 540px;
+      margin: 0 auto 32px;
     }
 
-    .footer a {
-      color: inherit;
+    .hero-guarantee {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      border: 1px solid var(--border-accent);
+      background: var(--accent-glow);
+      padding: 10px 24px;
+      border-radius: 8px;
+      margin-bottom: 36px;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      padding: 16px 40px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
       text-decoration: none;
-      transition: color 0.2s;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 24px rgba(224, 122, 47, 0.3);
     }
 
-    .footer a:hover {
-      color: rgba(255,255,255,0.45);
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(224, 122, 47, 0.4);
     }
 
-    /* ── Responsivo ─────────────────────────────────── */
+    /* ── SECTIONS ─────────────────────────────── */
+    section { padding: 80px 0; }
 
-    @media (max-width: 479px) {
-      .container {
-        padding-top:    max(36px, calc(12px + env(safe-area-inset-top,    0px)));
-        padding-bottom: max(48px, calc(16px + env(safe-area-inset-bottom, 0px)));
-        padding-left:   max(14px, env(safe-area-inset-left,  14px));
-        padding-right:  max(14px, env(safe-area-inset-right, 14px));
-        gap: 24px;
-      }
-      .bio,
-      .bio-guarantee { max-width: 100%; }
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
     }
 
-    @media (max-width: 359px) {
-      .container     { gap: 20px; }
-      .avatar        { width: 76px; height: 76px; }
-      .name          { font-size: 20px; }
-      .title         { font-size: 10px; }
-      .bio           { font-size: 13px; }
-      .bio-guarantee { font-size: 12px; padding: 8px 10px; }
-      .card          { padding: 12px 12px; gap: 10px; }
-      .card-icon     { width: 36px; height: 36px; }
-      .card-title    { font-size: 13px; }
-      .card-sub      { font-size: 11px; }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 16px;
     }
 
-    @media (min-width: 768px) {
-      .avatar { width: 104px; height: 104px; }
-      .name   { font-size: 30px; }
+    .section-sub {
+      font-size: 1rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin-bottom: 48px;
     }
 
-    /* ── Touch feedback mobile ──────────────────────── */
-    @media (hover: none) {
-      .card:active {
-        border-color: var(--border-hover);
-        transform: scale(0.97) !important;
-      }
+    /* ── PROBLEMA ─────────────────────────────── */
+    .problema { background: var(--bg); border-top: 1px solid var(--border); }
+
+    .pain-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
     }
 
-    /* ── Focus visible global ───────────────────────── */
-    :focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 3px;
+    .pain-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      transition: border-color 0.3s;
     }
 
-    /* ── Reduced motion ─────────────────────────────── */
-    @media (prefers-reduced-motion: reduce) {
-      .avatar-wrapper,
-      .glow-bg {
-        animation: none !important;
-      }
-      #beamsCanvas { display: none; }
-      .card {
-        transition: border-color 0ms, box-shadow 0ms !important;
-      }
+    .pain-item:hover { border-color: var(--red); }
+
+    .pain-icon {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: rgba(231, 76, 60, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--red);
+      font-size: 0.9rem;
+    }
+
+    .pain-item p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .frase-forte {
+      margin-top: 48px;
+      padding: 32px;
+      text-align: center;
+      border: 1px solid var(--border-accent);
+      border-radius: 12px;
+      background: var(--accent-glow);
+    }
+
+    .frase-forte p {
+      font-family: var(--font-display);
+      font-size: clamp(1.3rem, 3vw, 1.8rem);
+      color: var(--text);
+      font-style: italic;
+    }
+
+    /* ── SOLUÇÃO ──────────────────────────────── */
+    .solucao { background: var(--bg-card); }
+
+    .entrega-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .entrega-card {
+      padding: 28px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      transition: border-color 0.3s, transform 0.2s;
+    }
+
+    .entrega-card:hover {
+      border-color: var(--border-accent);
+      transform: translateY(-2px);
+    }
+
+    .entrega-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .entrega-card h3 span { color: var(--accent); }
+
+    .entrega-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .entrega-card ul li {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      padding: 6px 0;
+      padding-left: 18px;
+      position: relative;
+    }
+
+    .entrega-card ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.75rem;
+    }
+
+    /* ── PRA QUEM É ──────────────────────────── */
+    .qualificacao { background: var(--bg); border-top: 1px solid var(--border); }
+
+    .qual-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    @media (max-width: 640px) {
+      .qual-grid { grid-template-columns: 1fr; }
+    }
+
+    .qual-box { padding: 0; }
+
+    .qual-box h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .qual-box ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .qual-box ul li {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      padding: 10px 0;
+      padding-left: 24px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .qual-box.yes ul li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    .qual-box.no ul li::before {
+      content: '✗';
+      position: absolute;
+      left: 0;
+      color: var(--red);
+      font-weight: 700;
+    }
+
+    /* ── GARANTIA ─────────────────────────────── */
+    .garantia {
+      background: var(--bg-card);
+      text-align: center;
+    }
+
+    .garantia-box {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 48px 32px;
+      border: 1px solid var(--border-accent);
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--accent-glow) 0%, transparent 60%);
+    }
+
+    .garantia-box h3 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      margin-bottom: 20px;
+    }
+
+    .garantia-box h3 span { color: var(--accent); }
+
+    .garantia-box p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      line-height: 1.7;
+    }
+
+    .garantia-box .destaque {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-top: 20px;
+    }
+
+    /* ── TRANSFORMAÇÃO ────────────────────────── */
+    .transformacao { background: var(--bg); border-top: 1px solid var(--border); }
+
+    .transform-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    @media (max-width: 640px) {
+      .transform-grid { grid-template-columns: 1fr; }
+    }
+
+    .transform-col h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .transform-col ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .transform-col ul li {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      padding: 10px 0;
+      padding-left: 20px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .transform-col.before ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--red);
+    }
+
+    .transform-col.after ul li::before {
+      content: '+';
+      position: absolute;
+      left: 0;
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    /* ── CTA FINAL ────────────────────────────── */
+    .cta-final {
+      background: var(--bg-card);
+      text-align: center;
+      padding: 100px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-final::before {
+      content: '';
+      position: absolute;
+      bottom: -40%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-final .container { position: relative; z-index: 1; }
+
+    .cta-final h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      margin-bottom: 16px;
+    }
+
+    .cta-final .sub {
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .urgencia {
+      display: inline-block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      border: 1px solid var(--border-accent);
+      background: var(--accent-glow);
+      padding: 10px 24px;
+      border-radius: 8px;
+      margin-top: 24px;
+    }
+
+    /* ── FOOTER ────────────────────────────────── */
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.75rem;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* ── ANIMATIONS ────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-content { animation: fadeUp 0.8s ease-out; }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ────────────────────────────── */
+    @media (max-width: 480px) {
+      section { padding: 60px 0; }
+      .cta-btn { width: 100%; text-align: center; }
+      .hero { padding: 60px 24px; min-height: auto; }
     }
   </style>
 </head>
+
 <body>
-  <!-- Canvas de beams animados (z-index 0, atrás de tudo) -->
-  <canvas id="beamsCanvas" aria-hidden="true"></canvas>
 
-  <!-- Glows radiais por cima do canvas (z-index 2) -->
-  <div class="glow-bg" aria-hidden="true"></div>
-  <div class="glow-bg-bottom" aria-hidden="true"></div>
+  <!-- ══════════ HERO ══════════ -->
+  <section class="hero">
+    <div class="hero-content">
+      <img src="IMG_3762.JPG.jpeg" alt="Fábio Castello" class="hero-avatar" width="100" height="100">
+      <div class="hero-tag">Consultoria Comercial</div>
+      <h1>Estruturo processos que geram <em>vendas previsíveis</em></h1>
+      <p class="hero-sub">CRM, funil e time comercial organizados. Você não precisa mais improvisar — nós implementamos um sistema completo que organiza, automatiza e escala suas vendas.</p>
+      <div class="hero-guarantee">CRM, funil e time organizados em até 90 dias — ou seu dinheiro de volta.</div>
+      <br><br>
+      <a href="https://wa.me/5592999999999?text=Quero%20estruturar%20meu%20comercial" class="cta-btn">Quero estruturar meu comercial</a>
+    </div>
+  </section>
 
-  <!-- Cursor glow -->
-  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+  <!-- ══════════ PROBLEMA ══════════ -->
+  <section class="problema">
+    <div class="container fade-in">
+      <div class="section-label">O problema</div>
+      <h2 class="section-title">Você provavelmente está<br>passando por isso:</h2>
+      <p class="section-sub">A maioria das empresas perde vendas por falta de processo, não por falta de cliente.</p>
 
-  <main class="container">
-    <section class="profile">
-      <div class="avatar-wrapper">
-        <img
-          class="avatar"
-          src="IMG_3762.JPG.jpeg"
-          alt="Foto de Fábio Castello"
-          width="92"
-          height="92"
-        />
+      <div class="pain-grid">
+        <div class="pain-item">
+          <div class="pain-icon">✗</div>
+          <p>Leads chegando, mas poucos virando vendas</p>
+        </div>
+        <div class="pain-item">
+          <div class="pain-icon">✗</div>
+          <p>Equipe sem padrão de atendimento</p>
+        </div>
+        <div class="pain-item">
+          <div class="pain-icon">✗</div>
+          <p>Falta de follow-up — dinheiro ficando na mesa</p>
+        </div>
+        <div class="pain-item">
+          <div class="pain-icon">✗</div>
+          <p>CRM bagunçado ou nem utilizado</p>
+        </div>
+        <div class="pain-item">
+          <div class="pain-icon">✗</div>
+          <p>Dependente de "vendedores bons" ao invés de processo</p>
+        </div>
+        <div class="pain-item">
+          <div class="pain-icon">✗</div>
+          <p>Time não acompanha orçamentos em aberto — vendas perdidas sem perceber</p>
+        </div>
       </div>
-      <div class="profile-info">
-        <h1 class="name">Fábio Castello</h1>
-        <p class="title">Consultor de Vendas</p>
-        <p class="bio">Estruturo processos comerciais que geram vendas previsíveis</p>
+
+      <div class="frase-forte">
+        <p>O problema não é falta de cliente. É falta de processo.</p>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="links" aria-label="Opções de contato">
+  <!-- ══════════ SOLUÇÃO ══════════ -->
+  <section class="solucao">
+    <div class="container fade-in">
+      <div class="section-label">A solução</div>
+      <h2 class="section-title">Nós construímos sua<br>máquina de vendas</h2>
+      <p class="section-sub">Implementamos um sistema completo que organiza, automatiza e escala suas vendas.</p>
 
-      <a
-        class="card"
-        href="https://wa.me/19047491633?text=Oi%20F%C3%A1bio%2C%20vim%20pelo%20link%20da%20bio%20e%20quero%20parar%20de%20perder%20vendas"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Quero parar de perder vendas — abre WhatsApp"
-      >
-        <div class="card-glow"></div>
-        <div class="card-icon" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
-            <polyline points="16 7 22 7 22 13"/>
-          </svg>
+      <div class="entrega-grid">
+        <div class="entrega-card">
+          <h3><span>01.</span> Estrutura e tecnologia</h3>
+          <ul>
+            <li>Implementação completa do CRM</li>
+            <li>Automações de mensagens e follow-up</li>
+            <li>Organização de funis de vendas</li>
+            <li>Dashboard com indicadores de vendas, conversão e pipeline</li>
+          </ul>
         </div>
-        <div class="card-content">
-          <span class="card-title">Quero parar de perder vendas</span>
-          <span class="card-sub">Descubra onde seu comercial está falhando e como bater meta todos os dias</span>
+        <div class="entrega-card">
+          <h3><span>02.</span> Estratégia e posicionamento</h3>
+          <ul>
+            <li>Mapeamento da Jornada do Cliente</li>
+            <li>Definição do Perfil de Cliente Ideal (ICP)</li>
+            <li>Análise de mercado e concorrentes</li>
+          </ul>
         </div>
-        <span class="card-arrow" aria-hidden="true">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-          </svg>
-        </span>
-      </a>
-
-      <a
-        class="card"
-        href="https://wa.me/19047491633?text=Oi%20F%C3%A1bio%2C%20vim%20pelo%20link%20da%20bio%20e%20quero%20aprender%20a%20vender"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Quero aprender a vender — abre WhatsApp"
-      >
-        <div class="card-glow"></div>
-        <div class="card-icon" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
-            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-          </svg>
+        <div class="entrega-card">
+          <h3><span>03.</span> Processo comercial</h3>
+          <ul>
+            <li>Padronização do processo de vendas</li>
+            <li>Playbook comercial completo</li>
+            <li>Rotina comercial estruturada</li>
+          </ul>
         </div>
-        <div class="card-content">
-          <span class="card-title">Quero aprender a vender</span>
-          <span class="card-sub">Entre na área mais lucrativa do mercado e desenvolva uma habilidade para a vida</span>
+        <div class="entrega-card">
+          <h3><span>04.</span> Pessoas e equipe</h3>
+          <ul>
+            <li>Descrição de cargos comerciais</li>
+            <li>Estruturação da rotina da equipe</li>
+            <li>Acompanhamento comercial contínuo</li>
+            <li>Treinamento da equipe</li>
+          </ul>
         </div>
-        <span class="card-arrow" aria-hidden="true">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-          </svg>
-        </span>
-      </a>
+        <div class="entrega-card">
+          <h3><span>05.</span> Comunicação e vendas</h3>
+          <ul>
+            <li>Script de atendimento</li>
+            <li>Script de follow-up</li>
+            <li>Script de quebra de objeções</li>
+          </ul>
+        </div>
+        <div class="entrega-card">
+          <h3><span>06.</span> Acompanhamento e evolução</h3>
+          <ul>
+            <li>Acompanhamento comercial semanal</li>
+            <li>Treinamento em grupo (2x por mês)</li>
+            <li>Acesso à VX Academy (treinamentos gravados)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    </section>
+  <!-- ══════════ PRA QUEM É ══════════ -->
+  <section class="qualificacao">
+    <div class="container fade-in">
+      <div class="section-label">Qualificação</div>
+      <h2 class="section-title">Pra quem é — e pra quem não é</h2>
+      <p class="section-sub">Esse projeto é para empresas sérias que querem resultado real.</p>
 
-    <p class="bio-guarantee">CRM, funil e time comercial organizados em <strong>até 90 dias</strong> ou você recebe <strong>100% do seu investimento de volta.</strong></p>
+      <div class="qual-grid">
+        <div class="qual-box yes">
+          <h3><span style="color:var(--green)">✓</span> É para empresas que:</h3>
+          <ul>
+            <li>Já vendem e querem escalar</li>
+            <li>Têm equipe comercial ou querem montar</li>
+            <li>Querem previsibilidade de vendas</li>
+            <li>Estão cansadas de depender do improviso</li>
+          </ul>
+        </div>
+        <div class="qual-box no">
+          <h3><span style="color:var(--red)">✗</span> Não é para:</h3>
+          <ul>
+            <li>Quem quer resultado sem execução</li>
+            <li>Quem não tem volume mínimo de leads</li>
+            <li>Quem não quer organizar o próprio negócio</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <footer class="footer">
-      <a href="https://www.instagram.com/fabiocastellob" target="_blank" rel="noopener noreferrer">@fabiocastellob</a>
-    </footer>
-  </main>
+  <!-- ══════════ TRANSFORMAÇÃO ══════════ -->
+  <section class="transformacao">
+    <div class="container fade-in">
+      <div class="section-label">Transformação</div>
+      <h2 class="section-title">Antes vs Depois</h2>
+      <p class="section-sub">O que muda quando seu comercial tem processo.</p>
 
+      <div class="transform-grid">
+        <div class="transform-col before">
+          <h3><span style="color:var(--red)">✗</span> Antes</h3>
+          <ul>
+            <li>Vendas no improviso</li>
+            <li>Leads perdidos</li>
+            <li>Orçamentos esquecidos</li>
+            <li>Equipe desorganizada</li>
+            <li>Falta de controle</li>
+          </ul>
+        </div>
+        <div class="transform-col after">
+          <h3><span style="color:var(--green)">✓</span> Depois</h3>
+          <ul>
+            <li>Processo estruturado</li>
+            <li>CRM funcionando</li>
+            <li>Follow-up acontecendo</li>
+            <li>Equipe alinhada</li>
+            <li>Crescimento previsível</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ GARANTIA ══════════ -->
+  <section class="garantia">
+    <div class="container fade-in">
+      <div class="garantia-box">
+        <div class="section-label">O diferencial</div>
+        <h3>Garantia VX <span>90D</span></h3>
+        <p>Se em até 90 dias nós não estruturarmos seu CRM, seu processo comercial e sua operação de vendas:</p>
+        <div class="destaque">Devolvemos 100% do seu investimento. Sem risco.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ CTA FINAL ══════════ -->
+  <section class="cta-final">
+    <div class="container fade-in">
+      <h2>Pronto para parar de<br>perder vendas?</h2>
+      <p class="sub">Você pode continuar no improviso... ou estruturar um sistema que gera vendas todos os dias.</p>
+      <a href="https://wa.me/5592999999999?text=Quero%20estruturar%20meu%20comercial" class="cta-btn">Quero estruturar meu comercial agora</a>
+      <br>
+      <div class="urgencia">Condições especiais para novos clientes em Abril</div>
+    </div>
+  </section>
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <footer>
+    <p>VX Consultoria — Fábio Castello | <a href="/links">@fabiocastellob</a></p>
+    <p style="margin-top: 8px;">© 2026 VX Consultoria. Todos os direitos reservados.</p>
+  </footer>
+
+  <!-- ── SCROLL ANIMATION ── -->
   <script>
-    /* ── Spotlight border — ponteiro global ── */
-    document.addEventListener('pointermove', function(e) {
-      document.documentElement.style.setProperty('--spot-x', e.clientX.toFixed(2));
-      document.documentElement.style.setProperty('--spot-y', e.clientY.toFixed(2));
-    });
-
-    /* ── Canvas Beams ─────────────────────────────── */
-    (function () {
-      const canvas = document.getElementById('beamsCanvas');
-      const ctx    = canvas.getContext('2d');
-      let beams    = [];
-      let raf      = null;
-      const TOTAL_BEAMS = 30;
-
-      function createBeam(w, h) {
-        const angle = -35 + Math.random() * 10;
-        return {
-          x:          Math.random() * w * 1.5 - w * 0.25,
-          y:          Math.random() * h * 1.5 - h * 0.25,
-          width:      30 + Math.random() * 60,
-          length:     h * 2.5,
-          angle:      angle,
-          speed:      0.6 + Math.random() * 1.2,
-          opacity:    0.08 + Math.random() * 0.12,
-          hue:        20 + Math.random() * 20,
-          pulse:      Math.random() * Math.PI * 2,
-          pulseSpeed: 0.02 + Math.random() * 0.03,
-        };
-      }
-
-      function resetBeam(beam, index) {
-        const col     = index % 3;
-        const spacing = canvas.width / 3;
-        beam.y        = canvas.height + 100;
-        beam.x        = col * spacing + spacing / 2 + (Math.random() - 0.5) * spacing * 0.5;
-        beam.width    = 100 + Math.random() * 100;
-        beam.speed    = 0.5 + Math.random() * 0.4;
-        beam.hue      = 20 + (index * 20) / TOTAL_BEAMS;
-        beam.opacity  = 0.12 + Math.random() * 0.08;
-        return beam;
-      }
-
-      function drawBeam(beam) {
-        ctx.save();
-        ctx.translate(beam.x, beam.y);
-        ctx.rotate((beam.angle * Math.PI) / 180);
-
-        const pulsingOpacity = beam.opacity * (0.8 + Math.sin(beam.pulse) * 0.2) * 0.7;
-        const grad = ctx.createLinearGradient(0, 0, 0, beam.length);
-        const h = beam.hue;
-        grad.addColorStop(0,   `hsla(${h}, 90%, 58%, 0)`);
-        grad.addColorStop(0.1, `hsla(${h}, 90%, 58%, ${pulsingOpacity * 0.5})`);
-        grad.addColorStop(0.4, `hsla(${h}, 90%, 58%, ${pulsingOpacity})`);
-        grad.addColorStop(0.6, `hsla(${h}, 90%, 58%, ${pulsingOpacity})`);
-        grad.addColorStop(0.9, `hsla(${h}, 90%, 58%, ${pulsingOpacity * 0.5})`);
-        grad.addColorStop(1,   `hsla(${h}, 90%, 58%, 0)`);
-
-        ctx.fillStyle = grad;
-        ctx.fillRect(-beam.width / 2, 0, beam.width, beam.length);
-        ctx.restore();
-      }
-
-      function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.filter = 'blur(35px)';
-
-        beams.forEach((beam, i) => {
-          beam.y     -= beam.speed;
-          beam.pulse += beam.pulseSpeed;
-          if (beam.y + beam.length < -100) resetBeam(beam, i);
-          drawBeam(beam);
-        });
-
-        raf = requestAnimationFrame(animate);
-      }
-
-      function resize() {
-        const dpr     = window.devicePixelRatio || 1;
-        const w       = window.innerWidth;
-        const h       = window.innerHeight;
-        canvas.width  = w * dpr;
-        canvas.height = h * dpr;
-        canvas.style.width  = w + 'px';
-        canvas.style.height = h + 'px';
-        ctx.scale(dpr, dpr);
-        beams = Array.from({ length: TOTAL_BEAMS }, () => createBeam(w, h));
-      }
-
-      const noMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (!noMotion) {
-        resize();
-        window.addEventListener('resize', resize);
-        animate();
-      }
-    })();
-
-    /* ── Animação de entrada com Anime.js (spring physics) ── */
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    if (!prefersReducedMotion) {
-      const tl = anime.timeline({ easing: 'spring(1, 80, 12, 0)' });
-
-      tl.add({
-        targets: '.profile',
-        opacity: [0, 1],
-        translateY: [20, 0],
-        duration: 800,
-      }).add({
-        targets: '.profile-info',
-        opacity: [0, 1],
-        translateY: [12, 0],
-        duration: 700,
-      }, '-=500').add({
-        targets: '.card',
-        opacity: [0, 1],
-        translateY: [18, 0],
-        delay: anime.stagger(90),
-        duration: 700,
-      }, '-=400').add({
-        targets: '.bio-guarantee, .footer',
-        opacity: [0, 1],
-        translateY: [8, 0],
-        delay: anime.stagger(80),
-        duration: 500,
-      }, '-=200');
-    } else {
-      document.querySelectorAll('.profile, .profile-info, .card, .bio-guarantee, .footer').forEach(el => {
-        el.style.opacity = '1';
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
       });
-    }
+    }, { threshold: 0.1 });
 
-    /* ── Card tilt magnético + glow interno (desktop) ── */
-    const isHoverDevice = window.matchMedia('(hover: hover)').matches;
-
-    if (isHoverDevice) {
-      document.querySelectorAll('.card').forEach(card => {
-        const glow = card.querySelector('.card-glow');
-        let raf = null;
-
-        card.addEventListener('mousemove', e => {
-          if (raf) cancelAnimationFrame(raf);
-          raf = requestAnimationFrame(() => {
-            const rect  = card.getBoundingClientRect();
-            const cx    = rect.width  / 2;
-            const cy    = rect.height / 2;
-            const mx    = e.clientX - rect.left;
-            const my    = e.clientY - rect.top;
-            const rotX  = ((my - cy) / cy) * -4;
-            const rotY  = ((mx - cx) / cx) *  5;
-
-            card.style.transform  = `perspective(600px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-2px)`;
-            card.style.willChange = 'transform';
-
-            if (glow) {
-              glow.style.setProperty('--mx', `${mx}px`);
-              glow.style.setProperty('--my', `${my}px`);
-            }
-          });
-        });
-
-        card.addEventListener('mouseleave', () => {
-          if (raf) cancelAnimationFrame(raf);
-          anime({
-            targets: card,
-            rotateX: 0,
-            rotateY: 0,
-            translateY: 0,
-            duration: 400,
-            easing: 'spring(1, 80, 12, 0)',
-          });
-        });
-      });
-
-      /* ── Cursor glow ── */
-      const cursorGlow = document.getElementById('cursorGlow');
-
-      document.addEventListener('mousemove', e => {
-        cursorGlow.style.left    = e.clientX + 'px';
-        cursorGlow.style.top     = e.clientY + 'px';
-        cursorGlow.style.opacity = '1';
-      });
-
-      document.addEventListener('mouseleave', () => {
-        cursorGlow.style.opacity = '0';
-      });
-    }
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
   </script>
+
 </body>
 </html>
