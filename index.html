@@ -22,8 +22,9 @@
   <meta name="twitter:description" content="Estruturo processos comerciais que geram vendas previsíveis." />
   <meta name="twitter:image"       content="https://vxconsultoria.com/fabio1.webp" />
 
-  <!-- Favicon SVG inline -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230a0f1a'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='13' font-weight='700' fill='%23F97316'>VX</text></svg>" />
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="icon.png">
+  <link rel="apple-touch-icon" href="icon.png">
 
   <!-- Preload hero image para LCP otimizado -->
   <link rel="preload" as="image" href="fabio1.webp" type="image/webp">
@@ -153,6 +154,55 @@
       line-height: 1.7;
     }
 
+    /* ── HEADER FIXO ─────────────────────────── */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      padding: 14px 0;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+
+    .site-header.scrolled {
+      background: rgba(10, 15, 26, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 rgba(255,255,255,0.06);
+    }
+
+    .site-header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .site-header-logo {
+      height: 28px;
+      width: auto;
+      display: block;
+    }
+
+    .site-header-cta {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--accent);
+      border-radius: 8px;
+      padding: 9px 20px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+      white-space: nowrap;
+    }
+
+    .site-header-cta:hover { opacity: 0.88; }
+
+    @media (max-width: 640px) {
+      .site-header-logo { height: 22px; }
+      .site-header-cta  { font-size: 0.72rem; padding: 8px 14px; }
+    }
+
     /* ── BOTÃO CTA ────────────────────────────── */
     .cta-btn {
       display: inline-block;
@@ -188,7 +238,7 @@
       min-height: 100vh;
       display: flex;
       align-items: center;
-      padding: 80px 0;
+      padding: 120px 0 80px; /* topo maior para compensar header fixo */
       position: relative;
       overflow: hidden;
       background: var(--bg);
@@ -1272,6 +1322,18 @@
 
   <a href="#conteudo-principal" class="skip-nav">Pular para o conteúdo</a>
 
+  <!-- ══════════ HEADER ══════════ -->
+  <header class="site-header" id="site-header">
+    <div class="container">
+      <a href="/" aria-label="VX Consultoria — início">
+        <img src="logo-vazada.png" alt="VX Consultoria" class="site-header-logo">
+      </a>
+      <a href="https://wa.me/19047491633?text=Oi%20F%C3%A1bio%2C%20quero%20estruturar%20meu%20comercial" class="site-header-cta" target="_blank" rel="noopener noreferrer">
+        Falar com Fábio
+      </a>
+    </div>
+  </header>
+
   <main id="conteudo-principal">
 
   <!-- ══════════ HERO ══════════ -->
@@ -1667,13 +1729,19 @@
       <span>·</span>
       <a href="/links">Links</a>
     </div>
-    <p>VX Consultoria — Fábio Castello</p>
+    <img src="logo-vazada.png" alt="VX Consultoria" style="height:30px; width:auto; opacity:0.8; margin-bottom:12px;">
     <p style="margin-top: 8px;">© 2026 VX Consultoria. Todos os direitos reservados.</p>
     <p style="margin-top: 12px; font-size: 12px; opacity: 0.5;">Desenvolvido por <a href="https://instagram.com/iagovieira.ia" target="_blank" rel="noopener noreferrer">VANTAGE</a></p>
   </footer>
 
   <!-- ── SCROLL ANIMATION ── -->
   <script>
+    /* Header scroll */
+    const hdr = document.getElementById('site-header');
+    window.addEventListener('scroll', () => {
+      hdr.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
