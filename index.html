@@ -223,9 +223,17 @@
     .hero-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: center;
+      grid-template-rows: auto 1fr;
+      grid-template-areas:
+        "text-top  photo"
+        "text-bottom photo";
+      gap: 48px 64px;
+      align-items: start;
     }
+
+    .hero-text-top    { grid-area: text-top; }
+    .hero-photo-wrap  { grid-area: photo; }
+    .hero-text-bottom { grid-area: text-bottom; }
 
     .hero-tag {
       display: inline-block;
@@ -906,8 +914,9 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    .hero-text { animation: fadeUp 0.9s ease-out; }
-    .hero-photo-wrap { animation: fadeUp 1s ease-out 0.15s both; }
+    .hero-text-top    { animation: fadeUp 0.9s ease-out; }
+    .hero-text-bottom { animation: fadeUp 0.9s ease-out 0.1s both; }
+    .hero-photo-wrap  { animation: fadeUp 1s ease-out 0.15s both; }
 
     .fade-in {
       opacity: 0;
@@ -940,14 +949,16 @@
     @media (max-width: 1024px) {
       .hero-grid {
         grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        grid-template-areas:
+          "text-top"
+          "photo"
+          "text-bottom";
         text-align: center;
-        gap: 40px;
+        gap: 32px;
       }
 
-      .hero-text { order: 2; }
-
       .hero-photo-wrap {
-        order: 1;
         display: flex;
         justify-content: center;
       }
@@ -1015,48 +1026,41 @@
     @media (max-width: 640px) {
       section { padding: 64px 0; }
 
-      /* Layout overlay mobile: foto em cima, texto sobreposto */
+      /* Layout mobile: H1 → foto quadrada + badge → promessa + CTA */
       .hero {
         min-height: auto;
-        padding: 0 0 48px;
+        padding: 48px 0 48px;
       }
 
       .hero-grid {
-        gap: 0;
+        grid-template-areas:
+          "text-top"
+          "photo"
+          "text-bottom";
+        gap: 20px;
+        text-align: center;
       }
 
+      .hero-text-top {
+        padding: 0 20px;
+      }
+
+      /* Foto menor, quadradinha */
       .hero-photo-wrap {
-        display: block;
+        width: fit-content;
+        margin: 0 auto;
         position: relative;
-      }
-
-      /* Gradiente que funde a foto com o fundo abaixo */
-      .hero-photo-wrap::after {
-        content: '';
-        position: absolute;
-        bottom: 0; left: 0; right: 0;
-        height: 120px;
-        background: linear-gradient(transparent, #0a0f1a);
-        pointer-events: none;
       }
 
       .hero-photo {
-        width: 100%;
-        max-width: 100%;
+        width: 260px;
+        height: 260px;
+        max-width: none;
         max-height: none;
-        border-radius: 0;
+        object-fit: cover;
+        object-position: center top;
+        border-radius: 16px;
         display: block;
-      }
-
-      /* Texto sobe para sobrepor a borda inferior da foto */
-      .hero-text {
-        margin-top: -80px;
-        position: relative;
-        z-index: 2;
-        background: #0a0f1a;
-        padding-left: 20px;
-        padding-right: 20px;
-        padding-top: 8px;
       }
 
       .hero h1 {
@@ -1069,12 +1073,18 @@
         max-width: 100%;
       }
 
-      /* Badge visível no pé da foto, acima da área de overlap */
+      .hero-text-bottom {
+        padding: 0 20px;
+      }
+
+      /* Badge visível centrado no pé da foto */
       .hero-badge {
         display: flex;
-        bottom: 90px;
-        right: 16px;
-        left: auto;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        right: auto;
+        white-space: nowrap;
         z-index: 3;
       }
 
@@ -1200,18 +1210,10 @@
     <div class="container">
       <div class="hero-grid">
 
-        <!-- Texto -->
-        <div class="hero-text">
+        <!-- Texto topo: tag + H1 -->
+        <div class="hero-text-top">
           <div class="hero-tag">Consultoria Comercial</div>
           <h1>Estruturo processos que geram <span class="highlight">vendas previsíveis</span></h1>
-          <p class="hero-sub">CRM, funil e time comercial organizados. Você não precisa mais improvisar — nós implementamos um sistema completo que organiza, automatiza e escala suas vendas.</p>
-          <div class="hero-guarantee-inline">CRM, funil e time organizados em até 90 dias — ou seu dinheiro de volta.</div>
-          <div class="hero-cta-group">
-            <a href="https://wa.me/19047491633?text=Oi%20F%C3%A1bio%2C%20quero%20estruturar%20meu%20comercial" class="cta-btn" target="_blank" rel="noopener noreferrer">
-              Quero estruturar meu comercial
-            </a>
-            <span class="hero-micro">Resposta no mesmo dia · Sem compromisso</span>
-          </div>
         </div>
 
         <!-- Foto -->
@@ -1227,6 +1229,18 @@
               <strong>Garantia VX 90D</strong>
               <span>100% do investimento de volta</span>
             </div>
+          </div>
+        </div>
+
+        <!-- Texto baixo: sub + promessa + CTA -->
+        <div class="hero-text-bottom">
+          <p class="hero-sub">CRM, funil e time comercial organizados. Você não precisa mais improvisar — nós implementamos um sistema completo que organiza, automatiza e escala suas vendas.</p>
+          <div class="hero-guarantee-inline">CRM, funil e time organizados em até 90 dias — ou seu dinheiro de volta.</div>
+          <div class="hero-cta-group">
+            <a href="https://wa.me/19047491633?text=Oi%20F%C3%A1bio%2C%20quero%20estruturar%20meu%20comercial" class="cta-btn" target="_blank" rel="noopener noreferrer">
+              Quero estruturar meu comercial
+            </a>
+            <span class="hero-micro">Resposta no mesmo dia · Sem compromisso</span>
           </div>
         </div>
 
