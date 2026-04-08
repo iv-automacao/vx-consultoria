@@ -1015,9 +1015,48 @@
     @media (max-width: 640px) {
       section { padding: 64px 0; }
 
+      /* Layout overlay mobile: foto em cima, texto sobreposto */
       .hero {
         min-height: auto;
-        padding: 64px 0 56px;
+        padding: 0 0 48px;
+      }
+
+      .hero-grid {
+        gap: 0;
+      }
+
+      .hero-photo-wrap {
+        display: block;
+        position: relative;
+      }
+
+      /* Gradiente que funde a foto com o fundo abaixo */
+      .hero-photo-wrap::after {
+        content: '';
+        position: absolute;
+        bottom: 0; left: 0; right: 0;
+        height: 120px;
+        background: linear-gradient(transparent, #0a0f1a);
+        pointer-events: none;
+      }
+
+      .hero-photo {
+        width: 100%;
+        max-width: 100%;
+        max-height: none;
+        border-radius: 0;
+        display: block;
+      }
+
+      /* Texto sobe para sobrepor a borda inferior da foto */
+      .hero-text {
+        margin-top: -80px;
+        position: relative;
+        z-index: 2;
+        background: #0a0f1a;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 8px;
       }
 
       .hero h1 {
@@ -1030,12 +1069,14 @@
         max-width: 100%;
       }
 
-      .hero-photo {
-        max-width: 300px;
-        max-height: 360px;
+      /* Badge visível no pé da foto, acima da área de overlap */
+      .hero-badge {
+        display: flex;
+        bottom: 90px;
+        right: 16px;
+        left: auto;
+        z-index: 3;
       }
-
-      .hero-badge { display: none; }
 
       /* CTA full width com altura mínima para touch target */
       .cta-btn {
@@ -1096,7 +1137,7 @@
 
       .pain-grid { grid-template-columns: 1fr; }
 
-      .hero-photo { max-width: 260px; }
+      /* hero-photo ocupa largura total no mobile overlay */
 
       /* Proof cards 2 colunas ainda funcionam */
       .proof-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
@@ -1176,6 +1217,7 @@
         <!-- Foto -->
         <div class="hero-photo-wrap">
           <picture>
+              <source media="(max-width: 640px)" srcset="mobile.png">
               <source srcset="fabio1.webp" type="image/webp">
               <img src="fabio1.png" alt="Fábio Castello — Consultor Comercial" class="hero-photo" width="480" height="715" fetchpriority="high" loading="eager">
             </picture>
