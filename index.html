@@ -1684,60 +1684,110 @@
 
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-    /* ── CARROSSEL DE PROVAS ── */
+    /* ── CARROSSEL INFINITO ── */
     (function () {
-      const carousel = document.querySelector('.proof-carousel');
+      const carousel   = document.querySelector('.proof-carousel');
       if (!carousel) return;
 
-      const viewport = carousel.querySelector('.proof-carousel-viewport');
-      const track    = carousel.querySelector('.proof-track');
-      const cards    = carousel.querySelectorAll('.proof-card');
-      const dotsWrap = carousel.querySelector('.proof-dots');
-      const prevBtn  = carousel.querySelector('.proof-prev');
-      const nextBtn  = carousel.querySelector('.proof-next');
+      const viewport   = carousel.querySelector('.proof-carousel-viewport');
+      const track      = carousel.querySelector('.proof-track');
+      const origCards  = [...track.querySelectorAll('.proof-card')];
+      const dotsEl     = carousel.querySelector('.proof-dots');
+      const prevBtn    = carousel.querySelector('.proof-prev');
+      const nextBtn    = carousel.querySelector('.proof-next');
 
-      let current = 0;
+      const N = origCards.length; // 4 cards reais
+      let pv = 1, pos = 0, busy = false;
 
-      function perView() { return window.innerWidth >= 768 ? 2 : 1; }
-      function maxIdx()  { return Math.max(0, cards.length - perView()); }
+      /* ── Monta track com clones nas bordas ── */
+      function setup() {
+        pv = window.innerWidth >= 768 ? 2 : 1;
+        track.querySelectorAll('.pc').forEach(c => c.remove());
 
-      function buildDots() {
-        dotsWrap.innerHTML = '';
-        const total = maxIdx() + 1;
-        for (let i = 0; i < total; i++) {
+        // Prepend: clones dos ÚLTIMOS pv cards (inseridos em ordem reversa)
+        for (let i = N - 1; i >= N - pv; i--) {
+          const c = origCards[i].cloneNode(true); c.classList.add('pc');
+          track.insertBefore(c, track.firstChild);
+        }
+        // Append: clones dos PRIMEIROS pv cards
+        for (let i = 0; i < pv; i++) {
+          const c = origCards[i].cloneNode(true); c.classList.add('pc');
+          track.appendChild(c);
+        }
+
+        pos = pv; // começa no primeiro card real
+        move(pos, false);
+        rebuildDots();
+      }
+
+      function slotW() {
+        const gap = parseFloat(getComputedStyle(track).gap) || 16;
+        return track.children[0].offsetWidth + gap;
+      }
+
+      function move(p, anim) {
+        pos = p;
+        track.style.transition = anim
+          ? 'transform 0.4s cubic-bezier(0.4,0,0.2,1)'
+          : 'none';
+        track.style.transform = `translateX(${-pos * slotW()}px)`;
+        if (!anim) track.offsetHeight; // flush reflow
+      }
+
+      function dotCount() { return Math.max(1, N - pv + 1); }
+      function activeDot() { return Math.max(0, Math.min(pos - pv, dotCount() - 1)); }
+
+      function rebuildDots() {
+        dotsEl.innerHTML = '';
+        for (let i = 0; i < dotCount(); i++) {
           const d = document.createElement('button');
-          d.className = 'proof-dot' + (i === current ? ' active' : '');
-          d.setAttribute('aria-label', 'Slide ' + (i + 1));
-          d.addEventListener('click', () => goTo(i));
-          dotsWrap.appendChild(d);
+          d.className = 'proof-dot' + (i === activeDot() ? ' active' : '');
+          d.setAttribute('aria-label', `Slide ${i + 1}`);
+          d.addEventListener('click', () => {
+            if (busy) return;
+            busy = true;
+            move(pv + i, true);
+            syncDots();
+          });
+          dotsEl.appendChild(d);
         }
       }
 
-      function goTo(idx) {
-        current = Math.max(0, Math.min(idx, maxIdx()));
-        const cardW = cards[0].getBoundingClientRect().width;
-        track.style.transform = 'translateX(-' + current * (cardW + 16) + 'px)';
-        dotsWrap.querySelectorAll('.proof-dot').forEach((d, i) =>
-          d.classList.toggle('active', i === current));
-        prevBtn.disabled = current === 0;
-        nextBtn.disabled = current === maxIdx();
+      function syncDots() {
+        const a = activeDot();
+        dotsEl.querySelectorAll('.proof-dot').forEach((d, i) =>
+          d.classList.toggle('active', i === a));
       }
 
-      prevBtn.addEventListener('click', () => goTo(current - 1));
-      nextBtn.addEventListener('click', () => goTo(current + 1));
+      function step(dir) {
+        if (busy) return;
+        busy = true;
+        move(pos + dir, true);
+        syncDots();
+      }
 
-      /* swipe touch */
+      /* Após animação: se entrou na zona de clones, salta silenciosamente */
+      track.addEventListener('transitionend', () => {
+        busy = false;
+        const ri = pos - pv;
+        if (ri < 0)       move(pv + N + ri, false); // voltou além do início
+        else if (ri >= N) move(pv + ri - N, false); // avançou além do fim
+        syncDots();
+      });
+
+      prevBtn.addEventListener('click', () => step(-1));
+      nextBtn.addEventListener('click', () => step(+1));
+
+      /* Swipe touch */
       let tx = 0;
       viewport.addEventListener('touchstart', e => { tx = e.changedTouches[0].screenX; }, { passive: true });
       viewport.addEventListener('touchend',   e => {
-        const diff = tx - e.changedTouches[0].screenX;
-        if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
+        const d = tx - e.changedTouches[0].screenX;
+        if (Math.abs(d) > 40) step(d > 0 ? 1 : -1);
       }, { passive: true });
 
-      window.addEventListener('resize', () => { buildDots(); goTo(0); });
-
-      buildDots();
-      goTo(0);
+      window.addEventListener('resize', () => setup());
+      setup();
     }());
   </script>
 
